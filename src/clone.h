@@ -15,8 +15,14 @@ public:
     explicit Clone(QWidget *parent = nullptr);
     ~Clone();
 
+private slots:
+    void cloneFromChanged(QString gitCloneUrl);
+
 private:
     Ui::Clone *ui;
+    QString checkClipboardForGitUrl();
+    QString cloneToDefault = "~/";
+    const QString gitUrlSuffix = ".git";
 };
 
 #endif // CLONE_H
