@@ -1564,12 +1564,43 @@ void MainImpl::openRecent_triggered(QAction* act) {
 }
 
 void MainImpl::ActCloneRepo_activated() {
+
+//    auto ans = QMessageBox::question(this,
+//                                     "Not a Git repository",
+//                                     "This directory is not a git repository.\n\nDo you want to initialise it now?",
+//                                     QMessageBox::StandardButton::Yes | QMessageBox::StandardButton::No,
+//                                     QMessageBox::StandardButton::Yes);
+//    if (ans != QMessageBox::StandardButton::Yes) return;
+
     Clone cloneDialog(this);
 
-    //connect(&cloneDialog, SIGNAL(rejected()), this, SLOT())
+    //connect(&cloneDialog, SIGNAL(repositorySelected(QString,QString,bool)), this, SLOT(cloneRepoSelected(QString,QString,bool)));
+    connect(&cloneDialog, SIGNAL(repositorySelected()), this, SLOT(cloneRepoSelected()));
+
 
     cloneDialog.exec();
 }
+
+void MainImpl::cloneRepoSelected(QString cloneTo) {
+    setRepository(cloneTo);
+}
+
+//void MainImpl::cloneRepoSelected(QString gitCloneUrl, QString cloneTo, bool recurse) {
+
+
+//    //QProgressDialog w2(this);
+
+//    //QProgressDialog dialog("Computing", "Cancel", 0, 0);
+
+//    std::function<void()> add = [this]() { this->ActOpenRepo_activated(); };
+
+//    //setRepository
+
+//    Wait waitDialog(this, add, "Cloning repository");
+//    //connect(&cloneDialog, SIGNAL(accepted()), this, SLOT())
+
+//    waitDialog.exec();
+//}
 
 void MainImpl::ActOpenRepo_activated() {
 

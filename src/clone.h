@@ -15,14 +15,20 @@ public:
     explicit Clone(QWidget *parent = nullptr);
     ~Clone();
 
+signals:
+    //void repositorySelected(QString cloneUrl, QString cloneTo, bool recurse);
+    void repositorySelected(QString repositoryPath);
+
 private slots:
     void cloneFromChanged(QString gitCloneUrl);
+    void ok_activated();
 
 private:
     Ui::Clone *ui;
     QString checkClipboardForGitUrl();
     QString cloneToDefault = "~/";
     const QString gitUrlSuffix = ".git";
+    void performGitClone(QString cloneUrl, QString cloneTo, bool recurse);
 };
 
 #endif // CLONE_H

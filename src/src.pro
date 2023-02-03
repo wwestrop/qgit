@@ -75,7 +75,8 @@ OBJECTS_DIR = $$BUILD_DIR
 # project files
 FORMS += commit.ui console.ui customaction.ui fileview.ui help.ui \
          clone.ui \
-         mainview.ui patchview.ui rangeselect.ui revsview.ui settings.ui
+         mainview.ui patchview.ui rangeselect.ui revsview.ui settings.ui \
+         wait.ui
 
 HEADERS += annotate.h cache.h commitimpl.h common.h config.h consoleimpl.h \
     clone.h \
@@ -84,7 +85,8 @@ HEADERS += annotate.h cache.h commitimpl.h common.h config.h consoleimpl.h \
            listview.h mainimpl.h myprocess.h patchcontent.h patchview.h \
            rangeselectimpl.h revdesc.h revsview.h settingsimpl.h \
            smartbrowse.h treeview.h \
-    FileHistory.h
+    FileHistory.h \
+    wait.h
 
 SOURCES += annotate.cpp cache.cpp commitimpl.cpp consoleimpl.cpp \
     clone.cpp \
@@ -94,7 +96,8 @@ SOURCES += annotate.cpp cache.cpp commitimpl.cpp consoleimpl.cpp \
            patchcontent.cpp patchview.cpp qgit.cpp rangeselectimpl.cpp \
            revdesc.cpp revsview.cpp settingsimpl.cpp smartbrowse.cpp treeview.cpp \
     FileHistory.cc \
-    common.cpp
+    common.cpp \
+    wait.cpp
 
 DISTFILES += app_icon.rc helpgen.sh resources/* Src.vcproj todo.txt
 DISTFILES += ../COPYING ../exception_manager.txt ../README.adoc ../README_WIN.txt
