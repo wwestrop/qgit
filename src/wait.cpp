@@ -24,15 +24,18 @@ Wait::Wait(QWidget *parent, std::function<void()> awaitedAction, QString caption
     ui->caption->setText(caption + "...");
     this->awaitedAction = awaitedAction;
 
-
-}
-
-void Wait::showEvent(QShowEvent *e)
-{
     // TODO really this probably needs to be put on another thread, oh well I'm making this up as I go along
     awaitedAction();
 
     close();
+}
+
+void Wait::showEvent(QShowEvent *e)
+{
+//    // TODO really this probably needs to be put on another thread, oh well I'm making this up as I go along
+//    awaitedAction();
+
+//    close();
 }
 
 Wait::~Wait()

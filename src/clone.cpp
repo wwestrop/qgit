@@ -4,6 +4,8 @@
 #include "ui_clone.h"
 #include "wait.h"
 
+#include <QDir>
+
 Clone::Clone(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Clone)
@@ -29,19 +31,29 @@ QString Clone::checkClipboardForGitUrl() {
 
 void Clone::ok_activated() {
     auto cloneUrl = ui->cloneFrom->text();
-    auto cloneTo = ui ->cloneTo->text(); // TODO append "as" and ensure proper dir separators
+    auto cloneTo = ui ->cloneTo->text() + "/" + ui->cloneAs->text();
     bool recurse = ui->cloneSubmodules->checkState();
 
     auto x = [&]() { this->performGitClone(cloneUrl, cloneTo, recurse); };
 
-//    Wait waitDialog(this, x, "Cloning repository");
-//    waitDialog.exec();
+    Wait waitDialog(this, x, "Cloning repository");
+    waitDialog.exec();
 
-    x();
+    //x();
 
+    // hardcode it
+    //cloneTo = "/home/will/git/qgit";
+    cloneTo = getAbsolutePath(cloneTo);
 
     emit repositorySelected(cloneTo);
     accept();
+}
+
+QString Clone::getAbsolutePath(QString path) {
+    // TODO find a way to do this in the general case
+    if (path.startsWith("~/")) {
+        return QDir::homePath() + path.right(path.length() - 1);
+    }
 }
 
 void Clone::performGitClone(QString cloneUrl, QString cloneTo, bool recurse) {

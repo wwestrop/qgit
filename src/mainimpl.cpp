@@ -1575,13 +1575,14 @@ void MainImpl::ActCloneRepo_activated() {
     Clone cloneDialog(this);
 
     //connect(&cloneDialog, SIGNAL(repositorySelected(QString,QString,bool)), this, SLOT(cloneRepoSelected(QString,QString,bool)));
-    connect(&cloneDialog, SIGNAL(repositorySelected()), this, SLOT(cloneRepoSelected()));
+    connect(&cloneDialog, SIGNAL(repositorySelected(QString)), this, SLOT(cloneRepoSelected(QString)));
 
 
     cloneDialog.exec();
 }
 
 void MainImpl::cloneRepoSelected(QString cloneTo) {
+    QMessageBox::information(this, "Alert", "Chosen " + cloneTo);
     setRepository(cloneTo);
 }
 

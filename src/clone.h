@@ -29,6 +29,7 @@ private:
     QString cloneToDefault = "~/";
     const QString gitUrlSuffix = ".git";
     void performGitClone(QString cloneUrl, QString cloneTo, bool recurse);
+    QString getAbsolutePath(QString path);
 };
 
 #endif // CLONE_H
