@@ -22,6 +22,7 @@
 #include <QWheelEvent>
 #include <QTextCodec>
 #include <assert.h>
+#include "clone.h"
 #include "config.h" // defines PACKAGE_VERSION
 #include "consoleimpl.h"
 #include "commitimpl.h"
@@ -1560,6 +1561,14 @@ void MainImpl::openRecent_triggered(QAction* act) {
 			statusBar()->showMessage("Directory '" + workDir +
 			                         "' does not seem to exist anymore");
 	}
+}
+
+void MainImpl::ActCloneRepo_activated() {
+    Clone cloneDialog(this);
+
+    //connect(&cloneDialog, SIGNAL(rejected()), this, SLOT())
+
+    cloneDialog.exec();
 }
 
 void MainImpl::ActOpenRepo_activated() {

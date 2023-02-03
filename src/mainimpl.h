@@ -108,6 +108,7 @@ protected slots:
 	void ActSplitView_activated();
 	void ActToggleLogsDiff_activated();
 	void ActShowDescHeader_activated();
+	void ActCloneRepo_activated();
 	void ActOpenRepo_activated();
 	void ActOpenRepoNewWindow_activated();
 	void ActRefresh_activated();
