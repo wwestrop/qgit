@@ -1,6 +1,7 @@
 #ifndef CLONE_H
 #define CLONE_H
 
+#include "git.h"
 #include <QDialog>
 
 namespace Ui {
@@ -12,11 +13,10 @@ class Clone : public QDialog
     Q_OBJECT
 
 public:
-    explicit Clone(QWidget *parent = nullptr);
+    explicit Clone(Git *git, QWidget *parent = nullptr);
     ~Clone();
 
 signals:
-    //void repositorySelected(QString cloneUrl, QString cloneTo, bool recurse);
     void repositorySelected(QString repositoryPath);
 
 private slots:
@@ -25,11 +25,12 @@ private slots:
 
 private:
     Ui::Clone *ui;
-    QString checkClipboardForGitUrl();
+    QString checkClipboardForGitUrl() const;
     QString cloneToDefault = "~/";
     const QString gitUrlSuffix = ".git";
-    void performGitClone(QString cloneUrl, QString cloneTo, bool recurse);
-    QString getAbsolutePath(QString path);
+    bool performGitClone(QString& cloneUrl, QString& cloneTo, bool recurse);
+    QString getAbsolutePath(QString& path) const;
+    Git* git;
 };
 
 #endif // CLONE_H

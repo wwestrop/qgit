@@ -589,6 +589,14 @@ int Git::findFileIndex(const RevFile& rf, SCRef name) {
 	return -1;
 }
 
+bool Git::clone(QString& cloneFrom, QString& cloneTo, bool recurse)
+{
+    QString args = recurse ? "--recursive" : "";
+    args = args + " \"" + cloneFrom + "\" \"" + cloneTo + "\"";
+
+    return run("git clone " + args);
+}
+
 const QString Git::getLaneParent(SCRef fromSHA, int laneNum) {
 
 	const Rev* rs = revLookup(fromSHA);

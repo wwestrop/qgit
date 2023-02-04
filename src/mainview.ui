@@ -899,7 +899,10 @@
     <string>Clone...</string>
    </property>
    <property name="toolTip">
-    <string>Clone a repository from elsewhere</string>
+    <string>Clone</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+N</string>
    </property>
   </action>
  </widget>
@@ -1594,8 +1597,8 @@
    <slot>ActCloneRepo_activated()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>23</x>
-     <y>43</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>103</x>

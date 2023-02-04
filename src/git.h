@@ -135,6 +135,7 @@ public:
 	void removeExtraFileInfo(QString* rowName);
 	void formatPatchFileHeader(QString* rowName, SCRef sha, SCRef dts, bool cmb, bool all);
 	int findFileIndex(const RevFile& rf, SCRef name);
+    bool clone(QString& cloneFrom, QString& cloneTo, bool recurse);
 	const QString filePath(const RevFile& rf, uint i) const {
 
 		return dirNamesVec[rf.dirAt(i)] + fileNamesVec[rf.nameAt(i)];

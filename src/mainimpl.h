@@ -73,7 +73,6 @@ private slots:
 	void merge(const QStringList& shas, const QString& into);
 	void moveRef(const QString& refName, const QString& toSHA);
     void shortCutActivated();
-    //void cloneRepoSelected(QString gitCloneUrl, QString cloneTo, bool recurse);
     void cloneRepoSelected(QString cloneTo);
 
 protected:

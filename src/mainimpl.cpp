@@ -1565,14 +1565,9 @@ void MainImpl::openRecent_triggered(QAction* act) {
 
 void MainImpl::ActCloneRepo_activated() {
 
-//    auto ans = QMessageBox::question(this,
-//                                     "Not a Git repository",
-//                                     "This directory is not a git repository.\n\nDo you want to initialise it now?",
-//                                     QMessageBox::StandardButton::Yes | QMessageBox::StandardButton::No,
-//                                     QMessageBox::StandardButton::Yes);
-//    if (ans != QMessageBox::StandardButton::Yes) return;
-
-    Clone cloneDialog(this);
+    // TODO different dialogs seem to have a mix of new X (pointers) and X().
+    // TODO The pointers will live on the heap, is that a requirement (probably not if modal and the source form cannot destroy an object before we return), and are they ever cleared uo?
+    Clone cloneDialog(git, this);
 
     //connect(&cloneDialog, SIGNAL(repositorySelected(QString,QString,bool)), this, SLOT(cloneRepoSelected(QString,QString,bool)));
     connect(&cloneDialog, SIGNAL(repositorySelected(QString)), this, SLOT(cloneRepoSelected(QString)));
@@ -1582,26 +1577,8 @@ void MainImpl::ActCloneRepo_activated() {
 }
 
 void MainImpl::cloneRepoSelected(QString cloneTo) {
-    QMessageBox::information(this, "Alert", "Chosen " + cloneTo);
     setRepository(cloneTo);
 }
-
-//void MainImpl::cloneRepoSelected(QString gitCloneUrl, QString cloneTo, bool recurse) {
-
-
-//    //QProgressDialog w2(this);
-
-//    //QProgressDialog dialog("Computing", "Cancel", 0, 0);
-
-//    std::function<void()> add = [this]() { this->ActOpenRepo_activated(); };
-
-//    //setRepository
-
-//    Wait waitDialog(this, add, "Cloning repository");
-//    //connect(&cloneDialog, SIGNAL(accepted()), this, SLOT())
-
-//    waitDialog.exec();
-//}
 
 void MainImpl::ActOpenRepo_activated() {
 
