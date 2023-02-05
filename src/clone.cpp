@@ -6,6 +6,7 @@
 #include "wait.h"
 
 #include <QDir>
+#include <QFileDialog>
 
 Clone::Clone(Git *git, QWidget *parent) :
     QDialog(parent),
@@ -14,6 +15,10 @@ Clone::Clone(Git *git, QWidget *parent) :
     this->git = git;
 
     ui->setupUi(this);
+    ui->cloneTo->setText(QDir::homePath());   // TODO or read default from settings TODO this line causes memory bugs when closing this form...
+    //auto whyDoesTheOtherTextboxWork = "~/git";     //QDir::homePath();
+    //ui->cloneTo->setText(whyDoesTheOtherTextboxWork);           // it seems ~/git works all the time, but /home/will/git is what causes the problems. why on earth??!?
+
 
     auto gitCloneUrl = checkClipboardForGitUrl();
     if (gitCloneUrl != nullptr) {
@@ -61,13 +66,16 @@ QString Clone::getAbsolutePath(QString& path) const {
     if (path.startsWith("~/")) {
         return QDir::homePath() + path.right(path.length() - 1);
     }
+    else {
+        return path;
+    }
 }
 
 bool Clone::performGitClone(QString& cloneUrl, QString& cloneTo, bool recurse) {
     return git->clone(cloneUrl, cloneTo, recurse);
 }
 
-void Clone::cloneFromChanged(QString gitCloneUrl) {
+void Clone::cloneFrom_textChanged(QString gitCloneUrl) {
 
     QString suggestedName;
     auto stringIndex = gitCloneUrl.lastIndexOf("/") + 1;
@@ -78,6 +86,13 @@ void Clone::cloneFromChanged(QString gitCloneUrl) {
     }
 
     ui->cloneAs->setText(suggestedName);
+}
+
+void Clone::chooseDir_activated() {
+    auto dirName = QFileDialog::getExistingDirectory(this, "Choose a directory", ui->cloneTo->text());
+    if (!dirName.isEmpty()) {
+        ui->cloneTo->setText(dirName);
+    }
 }
 
 Clone::~Clone()

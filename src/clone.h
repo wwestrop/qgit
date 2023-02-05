@@ -20,7 +20,8 @@ signals:
     void repositorySelected(QString repositoryPath);
 
 private slots:
-    void cloneFromChanged(QString gitCloneUrl);
+    void cloneFrom_textChanged(QString gitCloneUrl);
+    void chooseDir_activated();
     void ok_activated();
 
 private:
