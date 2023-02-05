@@ -79,6 +79,7 @@ SettingsImpl::SettingsImpl(QWidget* p, Git* g, int defTab) : QDialog(p), git(g) 
 	lineEditTypeWriterFont->setCursorPosition(0); // font description could be long
 
 	comboBoxDoubleClickAction->setCurrentIndex(set.value(DCLICK_ACT_KEY).toUInt());
+	lineEditDefaultCloneDir->setText(set.value(DEF_CLONE_DIR, QDir::homePath()).toString());
 	setupCodecsCombo();
 	checkBoxDiffCache_toggled(checkBoxDiffCache->isChecked());
 	tabDialog->setCurrentIndex(defTab);
@@ -349,6 +350,11 @@ void SettingsImpl::lineEditExternalDiffViewer_textChanged(const QString& s) {
 void SettingsImpl::lineEditExternalEditor_textChanged(const QString& s) {
 
 	writeSetting(EXT_EDITOR_KEY, s);
+}
+
+void SettingsImpl::lineEditDefaultCloneDir_textChanged(const QString s) {
+
+	writeSetting(DEF_CLONE_DIR, s);
 }
 
 void SettingsImpl::lineEditApplyPatchExtraOptions_textChanged(const QString& s) {

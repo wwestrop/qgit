@@ -1,12 +1,15 @@
+#include "common.h"
 #include "clone.h"
 #include "git.h"
-#include "qclipboard.h"
-#include "qmessagebox.h"
+#include <QClipboard>
+#include <QSettings>
 #include "ui_clone.h"
 #include "wait.h"
 
 #include <QDir>
 #include <QFileDialog>
+
+using namespace QGit;
 
 Clone::Clone(Git *git, QWidget *parent) :
     QDialog(parent),
@@ -15,7 +18,9 @@ Clone::Clone(Git *git, QWidget *parent) :
     this->git = git;
 
     ui->setupUi(this);
-    ui->cloneTo->setText(QDir::homePath());   // TODO or read default from settings TODO this line causes memory bugs when closing this form...
+
+    QSettings settings;
+    ui->cloneTo->setText(settings.value(DEF_CLONE_DIR).toString());
 
     auto gitCloneUrl = checkClipboardForGitUrl();
     if (gitCloneUrl != nullptr) {

@@ -206,6 +206,7 @@ namespace QGit {
 	extern const QString EX_PER_DIR_KEY;
 	extern const QString EXT_DIFF_KEY;
 	extern const QString EXT_EDITOR_KEY;
+	extern const QString DEF_CLONE_DIR;
 	extern const QString DCLICK_ACT_KEY;
 	extern const QString REC_REP_KEY;
 	extern const QString ACT_LIST_KEY;
