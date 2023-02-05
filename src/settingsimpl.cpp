@@ -117,56 +117,56 @@ void SettingsImpl::userInfo() {
 
 void SettingsImpl::addConfigOption(QTreeWidgetItem* parent, QStringList paths, const QString& value) {
 
-    if (paths.isEmpty()) {
-        parent->setText(1, value);
-        return;
-    }
-    QString name(paths.first());
-    paths.removeFirst();
+	if (paths.isEmpty()) {
+		parent->setText(1, value);
+		return;
+	}
+	QString name(paths.first());
+	paths.removeFirst();
 
-    // Options list is already ordered
-    if (parent->childCount() == 0 || name != parent->child(0)->text(0))
-        parent->addChild(new QTreeWidgetItem(parent, QStringList(name)));
+	// Options list is already ordered
+	if (parent->childCount() == 0 || name != parent->child(0)->text(0))
+		parent->addChild(new QTreeWidgetItem(parent, QStringList(name)));
 
-    addConfigOption(parent->child(parent->childCount() - 1), paths, value);
+	addConfigOption(parent->child(parent->childCount() - 1), paths, value);
 }
 
 void SettingsImpl::readGitConfig(const QString& source) {
 
-    populatingGitConfig = true;
-    treeWidgetGitConfig->clear();
-    QStringList options(git->getGitConfigList(source == "Global"));
-    options.sort();
+	populatingGitConfig = true;
+	treeWidgetGitConfig->clear();
+	QStringList options(git->getGitConfigList(source == "Global"));
+	options.sort();
 
-    FOREACH_SL(it, options) {
+	FOREACH_SL(it, options) {
 
-        QStringList paths = it->split("=").at(0).split(".");
-        QString value = it->split("=").at(1);
+		QStringList paths = it->split("=").at(0).split(".");
+		QString value = it->split("=").at(1);
 
-        if (paths.isEmpty() || value.isEmpty()) {
-            dbp("SettingsImpl::readGitConfig Unable to parse line %1", *it);
-            continue;
-        }
-        QString name(paths.first());
-        paths.removeFirst();
-        QList<QTreeWidgetItem*> items = treeWidgetGitConfig->findItems(name, Qt::MatchExactly);
-        QTreeWidgetItem* item;
+		if (paths.isEmpty() || value.isEmpty()) {
+			dbp("SettingsImpl::readGitConfig Unable to parse line %1", *it);
+			continue;
+		}
+		QString name(paths.first());
+		paths.removeFirst();
+		QList<QTreeWidgetItem*> items = treeWidgetGitConfig->findItems(name, Qt::MatchExactly);
+		QTreeWidgetItem* item;
 
-        if (items.isEmpty())
-            item = new QTreeWidgetItem(treeWidgetGitConfig, QStringList(name));
-        else
-            item = items.first();
+		if (items.isEmpty())
+			item = new QTreeWidgetItem(treeWidgetGitConfig, QStringList(name));
+		else
+			item = items.first();
 
-        addConfigOption(item, paths, value);
-    }
-    populatingGitConfig = false;
+		addConfigOption(item, paths, value);
+	}
+	populatingGitConfig = false;
 }
 
 void SettingsImpl::treeWidgetGitConfig_itemChanged(QTreeWidgetItem* item, int i) {
 
-    if (populatingGitConfig)
-        return;
-    dbs(item->text(0));dbs(item->text(1));dbp("column %1", i);
+	if (populatingGitConfig)
+		return;
+	dbs(item->text(0));dbs(item->text(1));dbp("column %1", i);
 }
 
 void SettingsImpl::comboBoxUserSrc_activated(int i) {
@@ -177,7 +177,7 @@ void SettingsImpl::comboBoxUserSrc_activated(int i) {
 
 void SettingsImpl::comboBoxGitConfigSource_activated(int) {
 
-    readGitConfig(comboBoxGitConfigSource->currentText());
+	readGitConfig(comboBoxGitConfigSource->currentText());
 }
 
 void SettingsImpl::comboBoxDoubleClickAction_activated(int idx) {
@@ -236,7 +236,7 @@ void SettingsImpl::comboBoxCodecs_activated(int idx) {
 void SettingsImpl::pushButtonExtDiff_clicked() {
 
 	QString extDiffName(QFileDialog::getOpenFileName(this,
-	                    "Select the patch viewer"));
+						"Select the patch viewer"));
 	if (!extDiffName.isEmpty())
 		lineEditExternalDiffViewer->setText(extDiffName);
 }
@@ -244,7 +244,7 @@ void SettingsImpl::pushButtonExtDiff_clicked() {
 void SettingsImpl::pushButtonExtEditor_clicked() {
 
 	QString extEditorName(QFileDialog::getOpenFileName(this,
-	                    "Select the external editor"));
+						"Select the external editor"));
 	if (!extEditorName.isEmpty())
 		lineEditExternalEditor->setText(extEditorName);
 }
@@ -261,6 +261,14 @@ void SettingsImpl::pushButtonFont_clicked() {
 		writeSetting(TYPWRT_FNT_KEY, fnt.toString());
 
 		emit typeWriterFontChanged();
+	}
+}
+
+void SettingsImpl::pushButtonDefaultCloneDir_clicked() {
+
+	auto chosenDir = QFileDialog::getExistingDirectory(this, "Choose a directory", lineEditDefaultCloneDir->text());
+	if (!chosenDir.isEmpty()) {
+		lineEditDefaultCloneDir->setText(chosenDir);
 	}
 }
 

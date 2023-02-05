@@ -53,6 +53,7 @@ protected slots:
 	void pushButtonExtDiff_clicked();
 	void pushButtonExtEditor_clicked();
 	void pushButtonFont_clicked();
+	void pushButtonDefaultCloneDir_clicked();
 
 private:
 	void writeSetting(const QString& key, const QVariant& value);
