@@ -55,7 +55,6 @@ set(CPP_SOURCES
     src/settingsimpl.cpp
     src/smartbrowse.cpp
     src/treeview.cpp
-    src/wait.cpp
 )
 
 # UIS_HDRS will be used later in add_executable
@@ -71,7 +70,6 @@ qt5_wrap_ui(UIS_HDRS
     src/rangeselect.ui
     src/revsview.ui
     src/settings.ui
-    src/wait.ui
 )
 
 # and finally an resource file

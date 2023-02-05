@@ -73,31 +73,25 @@ RCC_DIR = $$BUILD_DIR
 OBJECTS_DIR = $$BUILD_DIR
 
 # project files
-FORMS += commit.ui console.ui customaction.ui fileview.ui help.ui \
-         clone.ui \
-         mainview.ui patchview.ui rangeselect.ui revsview.ui settings.ui \
-         wait.ui
+FORMS += clone.ui commit.ui console.ui customaction.ui fileview.ui help.ui \
+         mainview.ui patchview.ui rangeselect.ui revsview.ui settings.ui
 
-HEADERS += annotate.h cache.h commitimpl.h common.h config.h consoleimpl.h \
-    clone.h \
+HEADERS += annotate.h cache.h clone.h commitimpl.h common.h config.h consoleimpl.h \
            customactionimpl.h dataloader.h domain.h exceptionmanager.h \
            filecontent.h filelist.h fileview.h git.h help.h inputdialog.h lanes.h \
            listview.h mainimpl.h myprocess.h patchcontent.h patchview.h \
            rangeselectimpl.h revdesc.h revsview.h settingsimpl.h \
            smartbrowse.h treeview.h \
-    FileHistory.h \
-    wait.h
+    FileHistory.h
 
-SOURCES += annotate.cpp cache.cpp commitimpl.cpp consoleimpl.cpp \
-    clone.cpp \
+SOURCES += annotate.cpp cache.cpp clone.cpp commitimpl.cpp consoleimpl.cpp \
            customactionimpl.cpp dataloader.cpp domain.cpp exceptionmanager.cpp \
            filecontent.cpp filelist.cpp fileview.cpp git.cpp inputdialog.cpp \
            lanes.cpp listview.cpp mainimpl.cpp myprocess.cpp namespace_def.cpp \
            patchcontent.cpp patchview.cpp qgit.cpp rangeselectimpl.cpp \
            revdesc.cpp revsview.cpp settingsimpl.cpp smartbrowse.cpp treeview.cpp \
     FileHistory.cc \
-    common.cpp \
-    wait.cpp
+    common.cpp
 
 DISTFILES += app_icon.rc helpgen.sh resources/* Src.vcproj todo.txt
 DISTFILES += ../COPYING ../exception_manager.txt ../README.adoc ../README_WIN.txt

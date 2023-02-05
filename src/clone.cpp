@@ -16,9 +16,6 @@ Clone::Clone(Git *git, QWidget *parent) :
 
     ui->setupUi(this);
     ui->cloneTo->setText(QDir::homePath());   // TODO or read default from settings TODO this line causes memory bugs when closing this form...
-    //auto whyDoesTheOtherTextboxWork = "~/git";     //QDir::homePath();
-    //ui->cloneTo->setText(whyDoesTheOtherTextboxWork);           // it seems ~/git works all the time, but /home/will/git is what causes the problems. why on earth??!?
-
 
     auto gitCloneUrl = checkClipboardForGitUrl();
     if (gitCloneUrl != nullptr) {
@@ -44,15 +41,8 @@ void Clone::ok_activated() {
     cloneTo = getAbsolutePath(cloneTo);
     bool recurse = ui->cloneSubmodules->checkState();
 
-    auto x = [&]() { return this->performGitClone(cloneUrl, cloneTo, recurse); };
-
-    //Wait waitDialog(this, x, "Cloning repository");
-    //waitDialog.exec();
-    //waitDialog.open();
-    //waitDialog.show();
-
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-    bool success = x();
+    bool success = performGitClone(cloneUrl, cloneTo, recurse);
     QApplication::restoreOverrideCursor();
 
     if (success) {

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>513</width>
-    <height>416</height>
+    <height>377</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -33,7 +33,7 @@
    <item>
     <widget class="QTabWidget" name="tabDialog">
      <property name="currentIndex">
-      <number>4</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="General">
       <attribute name="title">
@@ -1242,9 +1242,6 @@
      <property name="standardButtons">
       <set>QDialogButtonBox::Ok</set>
      </property>
-     <property name="centerButtons">
-      <bool>false</bool>
-     </property>
     </widget>
    </item>
   </layout>
@@ -1261,8 +1258,8 @@
    <slot>checkBoxNumbers_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>42</x>
-     <y>74</y>
+     <x>26</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1277,8 +1274,8 @@
    <slot>lineEditFormatPatchExtraOptions_textChanged(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>324</x>
-     <y>362</y>
+     <x>160</x>
+     <y>301</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1293,8 +1290,8 @@
    <slot>checkBoxDiffCache_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>46</x>
-     <y>76</y>
+     <x>28</x>
+     <y>49</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1309,8 +1306,8 @@
    <slot>lineEditExcludePerDir_textChanged(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>195</x>
-     <y>362</y>
+     <x>90</x>
+     <y>301</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1325,8 +1322,8 @@
    <slot>lineEditExcludeFile_textChanged(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>195</x>
-     <y>333</y>
+     <x>90</x>
+     <y>277</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1341,8 +1338,8 @@
    <slot>checkBoxSign_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>42</x>
-     <y>101</y>
+     <x>26</x>
+     <y>69</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1357,8 +1354,8 @@
    <slot>lineEditTemplate_textChanged(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>182</x>
-     <y>333</y>
+     <x>91</x>
+     <y>277</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1373,8 +1370,8 @@
    <slot>lineEditCommitExtraOptions_textChanged(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>182</x>
-     <y>362</y>
+     <x>91</x>
+     <y>301</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1389,8 +1386,8 @@
    <slot>checkBoxRelativeDate_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>56</x>
-     <y>81</y>
+     <x>33</x>
+     <y>54</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1405,8 +1402,8 @@
    <slot>checkBoxRangeSelectDialog_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>56</x>
-     <y>110</y>
+     <x>33</x>
+     <y>78</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1421,8 +1418,8 @@
    <slot>checkBoxReopenLastRepo_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>56</x>
-     <y>139</y>
+     <x>33</x>
+     <y>102</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1437,8 +1434,8 @@
    <slot>comboBoxDoubleClickAction_activated(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>479</x>
-     <y>171</y>
+     <x>463</x>
+     <y>54</y>
     </hint>
     <hint type="destinationlabel">
      <x>159</x>
@@ -1453,8 +1450,8 @@
    <slot>comboBoxCodecs_activated(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>186</x>
-     <y>362</y>
+     <x>112</x>
+     <y>320</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1469,8 +1466,8 @@
    <slot>checkBoxCommitVerify_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>46</x>
-     <y>103</y>
+     <x>28</x>
+     <y>71</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1485,8 +1482,8 @@
    <slot>checkBoxCommitSign_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>46</x>
-     <y>76</y>
+     <x>28</x>
+     <y>49</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1501,8 +1498,8 @@
    <slot>checkBoxCommitUseDefMsg_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>65</x>
-     <y>130</y>
+     <x>47</x>
+     <y>101</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1517,8 +1514,8 @@
    <slot>checkBoxCommitSign_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>46</x>
-     <y>76</y>
+     <x>28</x>
+     <y>49</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1549,8 +1546,8 @@
    <slot>lineEditExternalEditor_textChanged(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>280</x>
-     <y>301</y>
+     <x>175</x>
+     <y>227</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1581,8 +1578,8 @@
    <slot>pushButtonExtEditor_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>490</x>
-     <y>301</y>
+     <x>468</x>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
      <x>256</x>
@@ -1613,8 +1610,8 @@
    <slot>comboBoxUserSrc_activated(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>490</x>
-     <y>249</y>
+     <x>440</x>
+     <y>206</y>
     </hint>
     <hint type="destinationlabel">
      <x>256</x>
@@ -1629,8 +1626,8 @@
    <slot>checkBoxMsgOnNewSHA_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>128</y>
+     <x>45</x>
+     <y>91</y>
     </hint>
     <hint type="destinationlabel">
      <x>225</x>
@@ -1645,8 +1642,8 @@
    <slot>checkBoxLogDiffTab_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>74</y>
+     <x>45</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
      <x>225</x>
@@ -1661,8 +1658,8 @@
    <slot>checkBoxSmartLabels_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>101</y>
+     <x>45</x>
+     <y>69</y>
     </hint>
     <hint type="destinationlabel">
      <x>225</x>
@@ -1677,8 +1674,8 @@
    <slot>lineEditApplyPatchExtraOptions_textChanged(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>324</x>
-     <y>331</y>
+     <x>160</x>
+     <y>275</y>
     </hint>
     <hint type="destinationlabel">
      <x>221</x>
@@ -1725,8 +1722,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>265</x>
-     <y>406</y>
+     <x>256</x>
+     <y>451</y>
     </hint>
     <hint type="destinationlabel">
      <x>256</x>
@@ -1755,48 +1752,6 @@
    <signal>toggled(bool)</signal>
    <receiver>settingsBase</receiver>
    <slot>checkBoxShowShortRef_toggled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>36</x>
-     <y>171</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
   </connection>
  </connections>
- <slots>
-  <slot>checkBoxNumbers_toggled(bool)</slot>
-  <slot>lineEditFormatPatchExtraOptions_textChanged(QString)</slot>
-  <slot>checkBoxDiffCache_toggled(bool)</slot>
-  <slot>lineEditExcludePerDir_textChanged(QString)</slot>
-  <slot>lineEditExcludeFile_textChanged(QString)</slot>
-  <slot>checkBoxSign_toggled(bool)</slot>
-  <slot>lineEditTemplate_textChanged(QString)</slot>
-  <slot>lineEditCommitExtraOptions_textChanged(QString)</slot>
-  <slot>checkBoxRelativeDate_toggled(bool)</slot>
-  <slot>checkBoxRangeSelectDialog_toggled(bool)</slot>
-  <slot>checkBoxReopenLastRepo_toggled(bool)</slot>
-  <slot>comboBoxDoubleClickAction_activated(int)</slot>
-  <slot>comboBoxCodecs_activated(int)</slot>
-  <slot>checkBoxCommitVerify_toggled(bool)</slot>
-  <slot>checkBoxCommitSign_toggled(bool)</slot>
-  <slot>checkBoxCommitUseDefMsg_toggled(bool)</slot>
-  <slot>lineEditExternalDiffViewer_textChanged(QString)</slot>
-  <slot>lineEditExternalEditor_textChanged(QString)</slot>
-  <slot>pushButtonExtDiff_clicked()</slot>
-  <slot>pushButtonExtEditor_clicked()</slot>
-  <slot>pushButtonFont_clicked()</slot>
-  <slot>comboBoxUserSrc_activated(int)</slot>
-  <slot>checkBoxMsgOnNewSHA_toggled(bool)</slot>
-  <slot>checkBoxLogDiffTab_toggled(bool)</slot>
-  <slot>checkBoxSmartLabels_toggled(bool)</slot>
-  <slot>lineEditApplyPatchExtraOptions_textChanged(QString)</slot>
-  <slot>comboBoxGitConfigSource_activated(int)</slot>
-  <slot>treeWidgetGitConfig_itemChanged(QTreeWidgetItem*, int)</slot>
-  <slot>checkBoxEnableDragnDrop_toggled(bool)</slot>
-  <slot>checkBoxShowShortRef_toggled(bool)</slot>
- </slots>
 </ui>

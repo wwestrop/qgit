@@ -1568,11 +1568,7 @@ void MainImpl::ActCloneRepo_activated() {
     // TODO different dialogs seem to have a mix of new X (pointers) and X().
     // TODO The pointers will live on the heap, is that a requirement (probably not if modal and the source form cannot destroy an object before we return), and are they ever cleared uo?
     Clone cloneDialog(git, this);
-
-    //connect(&cloneDialog, SIGNAL(repositorySelected(QString,QString,bool)), this, SLOT(cloneRepoSelected(QString,QString,bool)));
     connect(&cloneDialog, SIGNAL(repositorySelected(QString)), this, SLOT(cloneRepoSelected(QString)));
-
-
     cloneDialog.exec();
 }
 
