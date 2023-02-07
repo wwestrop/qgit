@@ -468,6 +468,7 @@ void MainImpl::setRepository(SCRef newDir, bool refresh, bool keepSelection,
 		} else
 			statusBar()->showMessage("Not a git archive");
 
+
 exit:
 		setRepositoryBusy = false;
 		EM_REMOVE(exExiting);
@@ -1572,7 +1573,8 @@ void MainImpl::ActCloneRepo_activated() {
     cloneDialog.exec();
 }
 
-void MainImpl::cloneRepoSelected(QString cloneTo) {
+void MainImpl::cloneRepoSelected(const QString& cloneTo) {
+
     setRepository(cloneTo);
 }
 

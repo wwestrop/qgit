@@ -1,10 +1,9 @@
+#include <QClipboard>
+#include <QSettings>
 #include "common.h"
 #include "clone.h"
 #include "git.h"
-#include <QClipboard>
-#include <QSettings>
 #include "ui_clone.h"
-#include "wait.h"
 
 #include <QDir>
 #include <QFileDialog>
@@ -22,25 +21,34 @@ Clone::Clone(Git *git, QWidget *parent) :
     QSettings settings;
     ui->cloneTo->setText(settings.value(DEF_CLONE_DIR).toString());
 
-    auto gitCloneUrl = checkClipboardForGitUrl();
-    if (gitCloneUrl != nullptr) {
-        ui->cloneFrom->setText(gitCloneUrl);
+    auto clipboardContent = QApplication::clipboard()->text();
+    if (isLikelyGitUrl(clipboardContent)) {
+        ui->cloneFrom->setText(clipboardContent);
     }
 }
 
-QString Clone::checkClipboardForGitUrl() const {
-    auto *clipboard = QApplication::clipboard();
-    auto text = clipboard->text();
+bool Clone::isLikelyGitUrl(const QString& s) const {
 
-    if (text.endsWith("/")) text = text.left(text.length() - 1);
+    auto normalised = s.endsWith("/")
+        ? s.chopped(1)
+        : s;
 
-    // TODO be more thorough about supported formats (e.g. raw github URL can also be cloned)
-    return text.endsWith(gitUrlSuffix)
-        ? text
-        : nullptr;
+    if (normalised.endsWith(gitUrlSuffix)) return true;
+
+    if (normalised.startsWith("https://github.com/")) return true;
+    if (normalised.startsWith("https://gitlab.com/")) return true;
+
+    // These patterns match Azure DevOps
+    auto hostPortion = normalised.left(normalised.indexOf("/"));
+    if (normalised.startsWith("https://dev.azure.com/")) return true;
+    if (hostPortion.endsWith(".visualstudio.com/")) return true;
+    if (hostPortion.endsWith("@vs-ssh.visualstudio.com:v3/")) return true;
+
+    return false;
 }
 
 void Clone::ok_activated() {
+
     auto cloneUrl = ui->cloneFrom->text();
     auto cloneTo = ui ->cloneTo->text() + "/" + ui->cloneAs->text();
     cloneTo = getAbsolutePath(cloneTo);
@@ -56,8 +64,8 @@ void Clone::ok_activated() {
     }
 }
 
-QString Clone::getAbsolutePath(QString& path) const {
-    // TODO find a way to do this in the general case
+QString Clone::getAbsolutePath(const QString& path) const {
+
     if (path.startsWith("~/")) {
         return QDir::homePath() + path.right(path.length() - 1);
     }
@@ -66,11 +74,12 @@ QString Clone::getAbsolutePath(QString& path) const {
     }
 }
 
-bool Clone::performGitClone(QString& cloneUrl, QString& cloneTo, bool recurse) {
+bool Clone::performGitClone(const QString& cloneUrl, const QString& cloneTo, bool recurse) {
+
     return git->clone(cloneUrl, cloneTo, recurse);
 }
 
-void Clone::cloneFrom_textChanged(QString gitCloneUrl) {
+void Clone::cloneFrom_textChanged(const QString& gitCloneUrl) {
 
     QString suggestedName;
     auto stringIndex = gitCloneUrl.lastIndexOf("/") + 1;
@@ -84,6 +93,7 @@ void Clone::cloneFrom_textChanged(QString gitCloneUrl) {
 }
 
 void Clone::chooseDir_activated() {
+
     auto dirName = QFileDialog::getExistingDirectory(this, "Choose a directory", ui->cloneTo->text());
     if (!dirName.isEmpty()) {
         ui->cloneTo->setText(dirName);

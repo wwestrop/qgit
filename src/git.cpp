@@ -589,8 +589,8 @@ int Git::findFileIndex(const RevFile& rf, SCRef name) {
 	return -1;
 }
 
-bool Git::clone(QString& cloneFrom, QString& cloneTo, bool recurse)
-{
+bool Git::clone(const QString& cloneFrom, const QString& cloneTo, bool recurse) {
+
     QString args = recurse ? "--recursive" : "";
     args = args + " \"" + cloneFrom + "\" \"" + cloneTo + "\"";
 

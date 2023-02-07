@@ -20,17 +20,19 @@ signals:
     void repositorySelected(QString repositoryPath);
 
 private slots:
-    void cloneFrom_textChanged(QString gitCloneUrl);
+    void cloneFrom_textChanged(const QString& gitCloneUrl);
     void chooseDir_activated();
     void ok_activated();
 
+//protected:
+//    virtual void focusInEvent( QFocusEvent* e);
+
 private:
     Ui::Clone *ui;
-    QString checkClipboardForGitUrl() const;
-    QString cloneToDefault = "~/";
+    bool isLikelyGitUrl(const QString& s) const;
     const QString gitUrlSuffix = ".git";
-    bool performGitClone(QString& cloneUrl, QString& cloneTo, bool recurse);
-    QString getAbsolutePath(QString& path) const;
+    bool performGitClone(const QString& cloneUrl, const QString& cloneTo, bool recurse);
+    QString getAbsolutePath(const QString& path) const;
     Git* git;
 };
 

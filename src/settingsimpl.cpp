@@ -264,6 +264,11 @@ void SettingsImpl::pushButtonFont_clicked() {
 	}
 }
 
+void SettingsImpl::lineEditDefaultCloneDir_textChanged(const QString& s) {
+
+    writeSetting(DEF_CLONE_DIR, s);
+}
+
 void SettingsImpl::pushButtonDefaultCloneDir_clicked() {
 
 	auto chosenDir = QFileDialog::getExistingDirectory(this, "Choose a directory", lineEditDefaultCloneDir->text());
@@ -358,11 +363,6 @@ void SettingsImpl::lineEditExternalDiffViewer_textChanged(const QString& s) {
 void SettingsImpl::lineEditExternalEditor_textChanged(const QString& s) {
 
 	writeSetting(EXT_EDITOR_KEY, s);
-}
-
-void SettingsImpl::lineEditDefaultCloneDir_textChanged(const QString s) {
-
-	writeSetting(DEF_CLONE_DIR, s);
 }
 
 void SettingsImpl::lineEditApplyPatchExtraOptions_textChanged(const QString& s) {

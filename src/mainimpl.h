@@ -73,7 +73,7 @@ private slots:
 	void merge(const QStringList& shas, const QString& into);
 	void moveRef(const QString& refName, const QString& toSHA);
 	void shortCutActivated();
-	void cloneRepoSelected(QString cloneTo);
+    void cloneRepoSelected(const QString& cloneTo);
 
 protected:
 	virtual bool event(QEvent* e);
