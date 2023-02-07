@@ -30,11 +30,11 @@ private slots:
 	void ok_activated();
 
 private:
-	bool isLikelyGitUrl(const QString& s) const;
-	const QString gitUrlSuffix = ".git";
-	bool performGitClone(const QString& cloneUrl, const QString& cloneTo, bool recurse);
-	QString getAbsolutePath(const QString& path) const;
 	Git* git;
+	const QString gitUrlSuffix = ".git";
+	bool isLikelyGitUrl(const QString& s) const;
+	QString getAbsolutePath(const QString& path) const;
+
 };
 
 #endif // CLONEIMPL_H

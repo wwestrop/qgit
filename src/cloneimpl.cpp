@@ -15,7 +15,7 @@ CloneImpl::CloneImpl(Git *git, QWidget *parent) : QDialog(parent) {
 	setupUi(this);
 
 	QSettings settings;
-	lineEditCloneTo->setText(settings.value(DEF_CLONE_DIR).toString());
+	lineEditCloneTo->setText(settings.value(DEF_CLONE_DIR, QDir::homePath()).toString());
 
 	auto clipboardContent = QApplication::clipboard()->text();
 	if (isLikelyGitUrl(clipboardContent)) {
@@ -51,7 +51,7 @@ void CloneImpl::ok_activated() {
 	bool recurse = checkBoxCloneSubmodules->checkState();
 
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	bool success = performGitClone(cloneUrl, cloneTo, recurse);
+	bool success = git->clone(cloneUrl, cloneTo, recurse);
 	QApplication::restoreOverrideCursor();
 
 	if (success) {
@@ -70,19 +70,13 @@ QString CloneImpl::getAbsolutePath(const QString& path) const {
 	}
 }
 
-bool CloneImpl::performGitClone(const QString& cloneUrl, const QString& cloneTo, bool recurse) {
-
-	return git->clone(cloneUrl, cloneTo, recurse);
-}
-
 void CloneImpl::cloneFrom_textChanged(const QString& gitCloneUrl) {
 
-	QString suggestedName;
 	auto stringIndex = gitCloneUrl.lastIndexOf("/") + 1;
-	suggestedName = gitCloneUrl.right(gitCloneUrl.length() - stringIndex);
-	if (suggestedName.endsWith("/")) suggestedName = suggestedName.left(suggestedName.length() - 1);
+	auto suggestedName = gitCloneUrl.right(gitCloneUrl.length() - stringIndex);
+	if (suggestedName.endsWith("/")) suggestedName.chop(1);
 	if (suggestedName.endsWith(gitUrlSuffix)) {
-		suggestedName = suggestedName.left(suggestedName.length() - gitUrlSuffix.length());
+		suggestedName.chop(gitUrlSuffix.length());
 	}
 
 	lineEditCloneAs->setText(suggestedName);
