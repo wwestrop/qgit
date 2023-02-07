@@ -468,7 +468,6 @@ void MainImpl::setRepository(SCRef newDir, bool refresh, bool keepSelection,
 		} else
 			statusBar()->showMessage("Not a git archive");
 
-
 exit:
 		setRepositoryBusy = false;
 		EM_REMOVE(exExiting);

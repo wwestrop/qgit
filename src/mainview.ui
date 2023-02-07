@@ -130,7 +130,7 @@
     <property name="separatorsCollapsible">
      <bool>true</bool>
     </property>
-	<addaction name="ActCloneRepo"/>
+    <addaction name="ActCloneRepo"/>
     <addaction name="ActOpenRepo"/>
     <addaction name="ActOpenRepoNewWindow"/>
     <addaction name="ActRefresh"/>

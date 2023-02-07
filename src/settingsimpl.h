@@ -38,8 +38,8 @@ protected slots:
 	void checkBoxCommitUseDefMsg_toggled(bool b);
 	void lineEditExternalDiffViewer_textChanged(const QString& s);
 	void lineEditExternalEditor_textChanged(const QString& s);
-    void lineEditDefaultCloneDir_textChanged(const QString& s);
-    void pushButtonDefaultCloneDir_clicked();
+	void lineEditDefaultCloneDir_textChanged(const QString& s);
+	void pushButtonDefaultCloneDir_clicked();
 	void lineEditApplyPatchExtraOptions_textChanged(const QString& s);
 	void lineEditFormatPatchExtraOptions_textChanged(const QString& s);
 	void lineEditExcludeFile_textChanged(const QString& s);
