@@ -27,7 +27,7 @@ include_directories(
 set(CPP_SOURCES
     src/annotate.cpp
     src/cache.cpp
-    src/clone.cpp
+    src/cloneimpl.cpp
     src/commitimpl.cpp
     src/common.cpp
     src/consoleimpl.cpp
