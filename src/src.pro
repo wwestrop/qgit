@@ -76,7 +76,7 @@ OBJECTS_DIR = $$BUILD_DIR
 FORMS += clone.ui commit.ui console.ui customaction.ui fileview.ui help.ui \
          mainview.ui patchview.ui rangeselect.ui revsview.ui settings.ui
 
-HEADERS += annotate.h cache.h clone.h commitimpl.h common.h config.h consoleimpl.h \
+HEADERS += annotate.h cache.h cloneimpl.h commitimpl.h common.h config.h consoleimpl.h \
            customactionimpl.h dataloader.h domain.h exceptionmanager.h \
            filecontent.h filelist.h fileview.h git.h help.h inputdialog.h lanes.h \
            listview.h mainimpl.h myprocess.h patchcontent.h patchview.h \
@@ -84,7 +84,7 @@ HEADERS += annotate.h cache.h clone.h commitimpl.h common.h config.h consoleimpl
            smartbrowse.h treeview.h \
     FileHistory.h
 
-SOURCES += annotate.cpp cache.cpp clone.cpp commitimpl.cpp consoleimpl.cpp \
+SOURCES += annotate.cpp cache.cpp cloneimpl.cpp commitimpl.cpp consoleimpl.cpp \
            customactionimpl.cpp dataloader.cpp domain.cpp exceptionmanager.cpp \
            filecontent.cpp filelist.cpp fileview.cpp git.cpp inputdialog.cpp \
            lanes.cpp listview.cpp mainimpl.cpp myprocess.cpp namespace_def.cpp \

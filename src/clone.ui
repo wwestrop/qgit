@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Clone</class>
- <widget class="QDialog" name="Clone">
+ <class>CloneBase</class>
+ <widget class="QDialog" name="CloneBase">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -38,7 +38,7 @@
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy">
-         <cstring>cloneFrom</cstring>
+         <cstring>lineEditCloneFrom</cstring>
         </property>
        </widget>
       </item>
@@ -51,7 +51,7 @@
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy">
-         <cstring>cloneTo</cstring>
+         <cstring>lineEditCloneTo</cstring>
         </property>
        </widget>
       </item>
@@ -75,24 +75,24 @@
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy">
-         <cstring>cloneAs</cstring>
+         <cstring>lineEditCloneAs</cstring>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="cloneFrom"/>
+       <widget class="QLineEdit" name="lineEditCloneFrom"/>
       </item>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="cloneTo"/>
+       <widget class="QLineEdit" name="lineEditCloneTo"/>
       </item>
       <item row="2" column="1">
-       <widget class="QLineEdit" name="cloneAs"/>
+       <widget class="QLineEdit" name="lineEditCloneAs"/>
       </item>
      </layout>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="cloneSubmodules">
+    <widget class="QCheckBox" name="checkBoxCloneSubmodules">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -130,18 +130,18 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>cloneFrom</tabstop>
-  <tabstop>cloneTo</tabstop>
+  <tabstop>lineEditCloneFrom</tabstop>
+  <tabstop>lineEditCloneTo</tabstop>
   <tabstop>chooseDir</tabstop>
-  <tabstop>cloneAs</tabstop>
-  <tabstop>cloneSubmodules</tabstop>
+  <tabstop>lineEditCloneAs</tabstop>
+  <tabstop>checkBoxCloneSubmodules</tabstop>
  </tabstops>
  <resources/>
  <connections>
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>Clone</receiver>
+   <receiver>CloneBase</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -157,7 +157,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>Clone</receiver>
+   <receiver>CloneBase</receiver>
    <slot>ok_activated()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -173,7 +173,7 @@
   <connection>
    <sender>chooseDir</sender>
    <signal>clicked()</signal>
-   <receiver>Clone</receiver>
+   <receiver>CloneBase</receiver>
    <slot>chooseDir_activated()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -187,9 +187,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>cloneFrom</sender>
+   <sender>lineEditCloneFrom</sender>
    <signal>textChanged(QString)</signal>
-   <receiver>Clone</receiver>
+   <receiver>CloneBase</receiver>
    <slot>cloneFrom_textChanged(QString)</slot>
    <hints>
     <hint type="sourcelabel">

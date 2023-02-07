@@ -1,20 +1,20 @@
-#ifndef CLONE_H
-#define CLONE_H
+#ifndef CLONEIMPL_H
+#define CLONEIMPL_H
 
-#include "git.h"
 #include <QDialog>
+#include "git.h"
+#include "ui_clone.h"
 
 namespace Ui {
-class Clone;
+class CloneImpl;
 }
 
-class Clone : public QDialog
+class CloneImpl : public QDialog, public Ui_CloneBase
 {
     Q_OBJECT
 
 public:
-    explicit Clone(Git *git, QWidget *parent = nullptr);
-    ~Clone();
+    CloneImpl(Git *git, QWidget *parent = nullptr);
 
 signals:
     void repositorySelected(QString repositoryPath);
@@ -28,7 +28,7 @@ private slots:
 //    virtual void focusInEvent( QFocusEvent* e);
 
 private:
-    Ui::Clone *ui;
+    Ui::CloneImpl *ui;
     bool isLikelyGitUrl(const QString& s) const;
     const QString gitUrlSuffix = ".git";
     bool performGitClone(const QString& cloneUrl, const QString& cloneTo, bool recurse);
@@ -36,4 +36,4 @@ private:
     Git* git;
 };
 
-#endif // CLONE_H
+#endif // CLONEIMPL_H

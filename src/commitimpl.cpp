@@ -233,9 +233,6 @@ bool CommitImpl::checkPatchName(QString& patchName) {
 
 bool CommitImpl::checkConfirm(SCRef msg, SCRef patchName, SCList selFiles, bool amend) {
 
-//	QTextCodec* tc = QTextCodec::codecForCStrings();
-//	QTextCodec::setCodecForCStrings(0); // set temporary Latin-1
-
 	// NOTEME: i18n-ugly
 	QString whatToDo = amend ?
 	    (git->isStGITStack() ? "refresh top patch with" :
@@ -256,8 +253,6 @@ bool CommitImpl::checkConfirm(SCRef msg, SCRef patchName, SCList selFiles, bool 
 	if (git->isStGITStack())
 		text.append("\n\nAnd patch name: " + patchName);
 
-//	QTextCodec::setCodecForCStrings(tc);
-
         QMessageBox msgBox(this);
         msgBox.setWindowTitle("Commit changes - QGit");
         msgBox.setText(text);
@@ -266,6 +261,10 @@ bool CommitImpl::checkConfirm(SCRef msg, SCRef patchName, SCList selFiles, bool 
 
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::Yes);
+        msgBox.setIcon(QMessageBox::Question);
+
+        QCheckBox *checkbox = new QCheckBox("Don't ask me again");
+        msgBox.setCheckBox(checkbox);
 
         return msgBox.exec() != QMessageBox::No;
 }

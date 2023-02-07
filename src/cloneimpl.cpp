@@ -1,33 +1,29 @@
+#include <QDir>
+#include <QFileDialog>
 #include <QClipboard>
 #include <QSettings>
 #include "common.h"
-#include "clone.h"
+#include "cloneimpl.h"
 #include "git.h"
-#include "ui_clone.h"
-
-#include <QDir>
-#include <QFileDialog>
 
 using namespace QGit;
 
-Clone::Clone(Git *git, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Clone)
-{
+CloneImpl::CloneImpl(Git *git, QWidget *parent) : QDialog(parent) {
+
     this->git = git;
 
-    ui->setupUi(this);
+    setupUi(this);
 
     QSettings settings;
-    ui->cloneTo->setText(settings.value(DEF_CLONE_DIR).toString());
+    lineEditCloneTo->setText(settings.value(DEF_CLONE_DIR).toString());
 
     auto clipboardContent = QApplication::clipboard()->text();
     if (isLikelyGitUrl(clipboardContent)) {
-        ui->cloneFrom->setText(clipboardContent);
+        lineEditCloneFrom->setText(clipboardContent);
     }
 }
 
-bool Clone::isLikelyGitUrl(const QString& s) const {
+bool CloneImpl::isLikelyGitUrl(const QString& s) const {
 
     auto normalised = s.endsWith("/")
         ? s.chopped(1)
@@ -47,12 +43,12 @@ bool Clone::isLikelyGitUrl(const QString& s) const {
     return false;
 }
 
-void Clone::ok_activated() {
+void CloneImpl::ok_activated() {
 
-    auto cloneUrl = ui->cloneFrom->text();
-    auto cloneTo = ui ->cloneTo->text() + "/" + ui->cloneAs->text();
+    auto cloneUrl = lineEditCloneFrom->text();
+    auto cloneTo = lineEditCloneTo->text() + "/" + lineEditCloneAs->text();
     cloneTo = getAbsolutePath(cloneTo);
-    bool recurse = ui->cloneSubmodules->checkState();
+    bool recurse = checkBoxCloneSubmodules->checkState();
 
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
     bool success = performGitClone(cloneUrl, cloneTo, recurse);
@@ -64,7 +60,7 @@ void Clone::ok_activated() {
     }
 }
 
-QString Clone::getAbsolutePath(const QString& path) const {
+QString CloneImpl::getAbsolutePath(const QString& path) const {
 
     if (path.startsWith("~/")) {
         return QDir::homePath() + path.right(path.length() - 1);
@@ -74,12 +70,12 @@ QString Clone::getAbsolutePath(const QString& path) const {
     }
 }
 
-bool Clone::performGitClone(const QString& cloneUrl, const QString& cloneTo, bool recurse) {
+bool CloneImpl::performGitClone(const QString& cloneUrl, const QString& cloneTo, bool recurse) {
 
     return git->clone(cloneUrl, cloneTo, recurse);
 }
 
-void Clone::cloneFrom_textChanged(const QString& gitCloneUrl) {
+void CloneImpl::cloneFrom_textChanged(const QString& gitCloneUrl) {
 
     QString suggestedName;
     auto stringIndex = gitCloneUrl.lastIndexOf("/") + 1;
@@ -89,18 +85,13 @@ void Clone::cloneFrom_textChanged(const QString& gitCloneUrl) {
         suggestedName = suggestedName.left(suggestedName.length() - gitUrlSuffix.length());
     }
 
-    ui->cloneAs->setText(suggestedName);
+    lineEditCloneAs->setText(suggestedName);
 }
 
-void Clone::chooseDir_activated() {
+void CloneImpl::chooseDir_activated() {
 
-    auto dirName = QFileDialog::getExistingDirectory(this, "Choose a directory", ui->cloneTo->text());
+    auto dirName = QFileDialog::getExistingDirectory(this, "Choose a directory", lineEditCloneTo->text());
     if (!dirName.isEmpty()) {
-        ui->cloneTo->setText(dirName);
+        lineEditCloneTo->setText(dirName);
     }
-}
-
-Clone::~Clone()
-{
-    delete ui;
 }
