@@ -31,14 +31,16 @@ bool CloneImpl::isLikelyGitUrl(const QString& s) const {
 
 	if (normalised.endsWith(gitUrlSuffix)) return true;
 
-	if (normalised.startsWith("https://github.com/")) return true;
-	if (normalised.startsWith("https://gitlab.com/")) return true;
+	// SSH URLs (GitHub and GitLab already detected by .git suffix)
+	if (normalised.startsWith("git@ssh.dev.azure.com:v3/")) return true;
+	if (normalised.midRef(normalised.indexOf("@")).startsWith("@vs-ssh.visualstudio.com:v3/")) return true;
 
-	// These patterns match Azure DevOps
-	auto hostPortion = normalised.left(normalised.indexOf("/"));
-	if (normalised.startsWith("https://dev.azure.com/")) return true;
-	if (hostPortion.endsWith(".visualstudio.com/")) return true;
-	if (hostPortion.endsWith("@vs-ssh.visualstudio.com:v3/")) return true;
+	// HTTP URLs
+	auto hostPortion = QUrl(s).host();
+	if (hostPortion == "github.com") return true;
+	if (hostPortion == "gitlab.com") return true;
+	if (hostPortion == "dev.azure.com") return true;
+	if (hostPortion.endsWith("visualstudio.com")) return true;
 
 	return false;
 }
@@ -72,9 +74,10 @@ QString CloneImpl::getAbsolutePath(const QString& path) const {
 
 void CloneImpl::cloneFrom_textChanged(const QString& gitCloneUrl) {
 
-	auto stringIndex = gitCloneUrl.lastIndexOf("/") + 1;
-	auto suggestedName = gitCloneUrl.right(gitCloneUrl.length() - stringIndex);
+	auto suggestedName = QUrl(gitCloneUrl).path(QUrl::ComponentFormattingOption::FullyDecoded);
 	if (suggestedName.endsWith("/")) suggestedName.chop(1);
+	auto stringIndex = suggestedName.lastIndexOf("/") + 1;
+	suggestedName = suggestedName.right(suggestedName.length() - stringIndex);
 	if (suggestedName.endsWith(gitUrlSuffix)) {
 		suggestedName.chop(gitUrlSuffix.length());
 	}
