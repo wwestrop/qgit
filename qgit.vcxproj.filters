@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;png</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\Icons">
+      <UniqueIdentifier>{7c1960c0-af36-4e45-ac13-8ae0edae4341}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="UI files">
+      <UniqueIdentifier>{81520150-4751-45d4-98bd-7daa955948fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\app_icon.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\helpgen.sh">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="src\icons.qrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="src\src.pro">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="src\commit.ui">
+      <Filter>UI files</Filter>
+    </None>
+    <None Include="src\console.ui">
+      <Filter>UI files</Filter>
+    </None>
+    <None Include="src\customaction.ui">
+      <Filter>UI files</Filter>
+    </None>
+    <None Include="src\fileview.ui">
+      <Filter>UI files</Filter>
+    </None>
+    <None Include="src\help.ui">
+      <Filter>UI files</Filter>
+    </None>
+    <None Include="src\mainview.ui">
+      <Filter>UI files</Filter>
+    </None>
+    <None Include="src\patchview.ui">
+      <Filter>UI files</Filter>
+    </None>
+    <None Include="src\rangeselect.ui">
+      <Filter>UI files</Filter>
+    </None>
+    <None Include="src\revsview.ui">
+      <Filter>UI files</Filter>
+    </None>
+    <None Include="src\settings.ui">
+      <Filter>UI files</Filter>
+    </None>
+    <None Include="COPYING.rtf" />
+    <None Include="qgit.pro" />
+    <None Include="qgit_inno_setup.iss" />
+    <None Include="README.adoc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\resources\qgit.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\resources\1downarrow.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\1uparrow.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\bookmark.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\bookmark_add.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\cancel.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\colorize.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\configure.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\editcopy.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\encrypted.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\filter.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\find.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\folder.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\folder_open.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\help.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\html.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\image.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\mail_get.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\mail_send.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\minusonly.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\misc.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\next.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\ok.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\openterm.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\pencil.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\plusminus.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\plusonly.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\previous.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\qgit.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\range_select.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\reload.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\remove.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\shellscript.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\source_c.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\source_cpp.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\source_h.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\source_java.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\source_pl.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\source_py.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\tar.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\txt.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\vcs_commit.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\view_choose.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\view_top_bottom.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\view_tree.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+    <Image Include="src\resources\wizard.png">
+      <Filter>Resource Files\Icons</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\annotate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cache.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\commitimpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\consoleimpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\customactionimpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dataloader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\domain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\exceptionmanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filecontent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filelist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fileview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\git.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\git_startup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lanes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\listview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mainimpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\myprocess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\namespace_def.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\patchcontent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\patchview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\qgit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rangeselectimpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\revdesc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\revsview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\settingsimpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\smartbrowse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\treeview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\annotate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\commitimpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\consoleimpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\customactionimpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dataloader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\domain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\exceptionmanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filecontent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filelist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fileview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\git.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\help.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lanes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\listview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mainimpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\myprocess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\patchcontent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\patchview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rangeselectimpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\revdesc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\revsview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\settingsimpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\smartbrowse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\treeview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="exception_manager.txt" />
+    <Text Include="README_WIN.txt" />
+    <Text Include="src\todo.txt" />
+  </ItemGroup>
+</Project>

@@ -160,8 +160,10 @@ void MyProcess::on_finished(int exitCode, QProcess::ExitStatus exitStatus) {
 	// in Window shell interpreter.
 	//
 	// So to detect a failing command we check also if stderr is not empty.
+	// Which it seems is also not completely reliable
 	QByteArray err = readAllStandardError();
 	accError += err;
+
 
 	isErrorExit =   (exitStatus != QProcess::NormalExit)
 #ifdef Q_OS_WIN32

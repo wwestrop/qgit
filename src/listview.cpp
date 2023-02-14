@@ -1093,7 +1093,7 @@ void ListViewDelegate::paint(QPainter* p, const QStyleOptionViewItem& opt,
 	return QItemDelegate::paint(p, opt, index);
 }
 
-bool ListViewDelegate::changedFiles(SCRef sha) const {
+bool ListViewDelegate::changedFiles(SCRef sha) const {	// TODO this does something on RevFile::UNKNOWN - does my "show it green" change affect this?
 
 	const RevFile* f = git->getFiles(sha);
 	if (f)

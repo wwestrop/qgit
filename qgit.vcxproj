@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{40FC69D6-9066-41F6-8D9E-63886F5F058E}</ProjectGuid>
+    <RootNamespace>qgit</RootNamespace>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>17.0.33205.214</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>Debug\</OutDir>
+    <IntDir>Debug\</IntDir>
+    <NMakeBuildCommandLine>nmake /f Makefile debug</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>nmake /f Makefile debug</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>nmake /f Makefile clean</NMakeCleanCommandLine>
+    <NMakeOutput />
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>Release\</OutDir>
+    <IntDir>Release\</IntDir>
+    <NMakeBuildCommandLine>nmake /f Makefile release</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>nmake /f Makefile debug</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>nmake /f Makefile clean</NMakeCleanCommandLine>
+    <NMakeOutput />
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\app_icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="COPYING.rtf" />
+    <None Include="qgit.pro" />
+    <None Include="qgit_inno_setup.iss" />
+    <None Include="README.adoc" />
+    <None Include="src\commit.ui" />
+    <None Include="src\console.ui" />
+    <None Include="src\customaction.ui" />
+    <None Include="src\fileview.ui" />
+    <None Include="src\help.ui" />
+    <None Include="src\helpgen.sh" />
+    <None Include="src\icons.qrc" />
+    <None Include="src\mainview.ui" />
+    <None Include="src\patchview.ui" />
+    <None Include="src\rangeselect.ui" />
+    <None Include="src\revsview.ui" />
+    <None Include="src\settings.ui" />
+    <None Include="src\src.pro" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\resources\1downarrow.png" />
+    <Image Include="src\resources\1uparrow.png" />
+    <Image Include="src\resources\bookmark.png" />
+    <Image Include="src\resources\bookmark_add.png" />
+    <Image Include="src\resources\cancel.png" />
+    <Image Include="src\resources\colorize.png" />
+    <Image Include="src\resources\configure.png" />
+    <Image Include="src\resources\editcopy.png" />
+    <Image Include="src\resources\encrypted.png" />
+    <Image Include="src\resources\filter.png" />
+    <Image Include="src\resources\find.png" />
+    <Image Include="src\resources\folder.png" />
+    <Image Include="src\resources\folder_open.png" />
+    <Image Include="src\resources\help.png" />
+    <Image Include="src\resources\html.png" />
+    <Image Include="src\resources\image.png" />
+    <Image Include="src\resources\mail_get.png" />
+    <Image Include="src\resources\mail_send.png" />
+    <Image Include="src\resources\minusonly.png" />
+    <Image Include="src\resources\misc.png" />
+    <Image Include="src\resources\next.png" />
+    <Image Include="src\resources\ok.png" />
+    <Image Include="src\resources\openterm.png" />
+    <Image Include="src\resources\pencil.png" />
+    <Image Include="src\resources\plusminus.png" />
+    <Image Include="src\resources\plusonly.png" />
+    <Image Include="src\resources\previous.png" />
+    <Image Include="src\resources\qgit.ico" />
+    <Image Include="src\resources\qgit.png" />
+    <Image Include="src\resources\range_select.png" />
+    <Image Include="src\resources\reload.png" />
+    <Image Include="src\resources\remove.png" />
+    <Image Include="src\resources\shellscript.png" />
+    <Image Include="src\resources\source_c.png" />
+    <Image Include="src\resources\source_cpp.png" />
+    <Image Include="src\resources\source_h.png" />
+    <Image Include="src\resources\source_java.png" />
+    <Image Include="src\resources\source_pl.png" />
+    <Image Include="src\resources\source_py.png" />
+    <Image Include="src\resources\tar.png" />
+    <Image Include="src\resources\txt.png" />
+    <Image Include="src\resources\vcs_commit.png" />
+    <Image Include="src\resources\view_choose.png" />
+    <Image Include="src\resources\view_top_bottom.png" />
+    <Image Include="src\resources\view_tree.png" />
+    <Image Include="src\resources\wizard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\annotate.cpp" />
+    <ClCompile Include="src\cache.cpp" />
+    <ClCompile Include="src\commitimpl.cpp" />
+    <ClCompile Include="src\consoleimpl.cpp" />
+    <ClCompile Include="src\customactionimpl.cpp" />
+    <ClCompile Include="src\dataloader.cpp" />
+    <ClCompile Include="src\domain.cpp" />
+    <ClCompile Include="src\exceptionmanager.cpp" />
+    <ClCompile Include="src\filecontent.cpp" />
+    <ClCompile Include="src\filelist.cpp" />
+    <ClCompile Include="src\fileview.cpp" />
+    <ClCompile Include="src\git.cpp" />
+    <ClCompile Include="src\git_startup.cpp" />
+    <ClCompile Include="src\lanes.cpp" />
+    <ClCompile Include="src\listview.cpp" />
+    <ClCompile Include="src\mainimpl.cpp" />
+    <ClCompile Include="src\myprocess.cpp" />
+    <ClCompile Include="src\namespace_def.cpp" />
+    <ClCompile Include="src\patchcontent.cpp" />
+    <ClCompile Include="src\patchview.cpp" />
+    <ClCompile Include="src\qgit.cpp" />
+    <ClCompile Include="src\rangeselectimpl.cpp" />
+    <ClCompile Include="src\revdesc.cpp" />
+    <ClCompile Include="src\revsview.cpp" />
+    <ClCompile Include="src\settingsimpl.cpp" />
+    <ClCompile Include="src\smartbrowse.cpp" />
+    <ClCompile Include="src\treeview.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\annotate.h" />
+    <ClInclude Include="src\cache.h" />
+    <ClInclude Include="src\commitimpl.h" />
+    <ClInclude Include="src\common.h" />
+    <ClInclude Include="src\config.h" />
+    <ClInclude Include="src\consoleimpl.h" />
+    <ClInclude Include="src\customactionimpl.h" />
+    <ClInclude Include="src\dataloader.h" />
+    <ClInclude Include="src\domain.h" />
+    <ClInclude Include="src\exceptionmanager.h" />
+    <ClInclude Include="src\filecontent.h" />
+    <ClInclude Include="src\filelist.h" />
+    <ClInclude Include="src\fileview.h" />
+    <ClInclude Include="src\git.h" />
+    <ClInclude Include="src\help.h" />
+    <ClInclude Include="src\lanes.h" />
+    <ClInclude Include="src\listview.h" />
+    <ClInclude Include="src\mainimpl.h" />
+    <ClInclude Include="src\myprocess.h" />
+    <ClInclude Include="src\patchcontent.h" />
+    <ClInclude Include="src\patchview.h" />
+    <ClInclude Include="src\rangeselectimpl.h" />
+    <ClInclude Include="src\revdesc.h" />
+    <ClInclude Include="src\revsview.h" />
+    <ClInclude Include="src\settingsimpl.h" />
+    <ClInclude Include="src\smartbrowse.h" />
+    <ClInclude Include="src\treeview.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="exception_manager.txt" />
+    <Text Include="README_WIN.txt" />
+    <Text Include="src\todo.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

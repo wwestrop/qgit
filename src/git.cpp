@@ -287,10 +287,14 @@ const QString Git::refAsShortHash(SCRef sha)
 
 int Git::getShortHashLength()
 {
+	//return 7;
+
 	int len = 0;
 	QString shortHash;
+	errorReportingEnabled = false;			// if it fails (e.g. repo with no commits yet), fall back to shortHashLenDefault
 	if (run("git rev-parse --short HEAD", &shortHash))
 		len = shortHash.trimmed().size();   // Result contains a newline.
+	errorReportingEnabled = true;
 	return (len > shortHashLenDefault) ? len : shortHashLenDefault;
 }
 
@@ -592,7 +596,7 @@ int Git::findFileIndex(const RevFile& rf, SCRef name) {
 bool Git::clone(const QString& cloneFrom, const QString& cloneTo, bool recurse) {
 
     QString args = recurse ? "--recursive" : "";
-    args = args + " \"" + cloneFrom + "\" \"" + cloneTo + "\"";
+    args = args + " \"" + cloneFrom + "\" \"" + cloneTo + "\" --quiet";			// TODO for some reason quiet is required on Windows
 
     return run("git clone " + args);
 }
@@ -656,20 +660,40 @@ const QString Git::getShortLog(SCRef sha) {
 
 MyProcess* Git::getDiff(SCRef sha, QObject* receiver, SCRef diffToSha, bool combined) {
 
-	if (sha.isEmpty())
+	// diffToSha never set to anything, except CTRL-RIGHTCLICK....... Not very obvious
+	auto difsha = diffToSha.toStdString();
+	auto lasha = sha.toStdString();
+	//if (sha.isEmpty() || sha == ZERO_SHA)
+	if (sha.isEmpty())			// I have no idea why the branch below treats ZERO_SHA as anything. What edge-case is this? Probably StGit
+		// Zero_SHA seems to indicate the "fake commit" at the top of the tree -> so called "diff against working directory"
+		// In the case of a repo with no commits, I want to show all the files as "added" (and possibly staged or not, though the existing view does not show that)
+		// Empty sha = nothing selected ??? i.e. not a git repo? or no commits and no "diff to working dir"
 		return NULL;
+
+	const Rev* r = revLookup(sha);
+	//auto vewo = r3->parentsCount();
+	//auto sxxx = r3->descRefs;
+	//auto gwtg = r3->descRefs.count();
+	//auto eye5 = r3->children;
+	//auto igws = r3->children.count();
+	//auto t3wt = r3->isDiffCache;			// This means SHA_ZERO, "working dir fake commit"
 
 	QString runCmd;
 	if (sha != ZERO_SHA) {
 		runCmd = "git diff-tree --no-color -r --patch-with-stat ";
 		runCmd.append(combined ? "-c " : "-C -m "); // TODO rename for combined
 
-        const Rev* r = revLookup(sha);
         if (r->parentsCount() == 0)
             runCmd.append("--root ");
 
 		runCmd.append(diffToSha + " " + sha); // diffToSha could be empty
-	} else
+	}
+	else if (sha == ZERO_SHA && r->parentsCount() == 0) {
+		// this is the working directory in a repo with no commits yet
+		runCmd = "git status";
+		//runCmd = "git diff 4b825dc642cb6eb9a060e54bf8d69288fbee4904";		// git magic string representing "empty tree"
+	}
+	else
 		runCmd = "git diff-index --no-color -r -m --patch-with-stat HEAD";
 
 	return runAsync(runCmd, receiver);
@@ -791,6 +815,7 @@ bool Git::saveFile(SCRef fileSha, SCRef fileName, SCRef path) {
 	return writeToFile(path, QString(fileData));
 }
 
+// TODO what does this method do with the "unknowns"?
 bool Git::getTree(SCRef treeSha, TreeInfo& ti, bool isWorkingDir, SCRef path) {
 
 	QStringList deleted;
@@ -1204,6 +1229,7 @@ const RevFile* Git::getFiles(SCRef sha, SCRef diffToSha, bool allFiles, SCRef pa
 		return NULL;
 
 	if (r->parentsCount() == 0) // skip initial rev
+		//return getOthersFiles();
 		return NULL;
 
 	if (r->parentsCount() > 1 && diffToSha.isEmpty() && allFiles)
@@ -1994,7 +2020,7 @@ const RevFile* Git::fakeWorkDirRevFile(const WorkingDirInfo& wd) {
         FOREACH_SL (it, wd.otherFiles) {
 
                 appendFileName(*rf, *it, fl);
-                rf->status.append(RevFile::UNKNOWN);
+                rf->status.append(RevFile::UNKNOWN);		// yup we specifically set it as unknown
                 rf->mergeParent.append(1);
         }
         RevFile cachedFiles;
@@ -2028,11 +2054,25 @@ void Git::getDiffIndex() {
                 if (!run("git diff-index --cached " + head, &workingDirInfo.diffIndexCached))
                         return;
         }
+		else {
+			// this is for when the repository has no commits as yet (hence no HEAD)
+			QString myout;
+			run("git status --short", &myout);
+			// parse that (can I get it in the same format as git diff-index), and do whatever fakeWorkDirRevFile()/parseDiffFormat() does
+
+
+		}
+
         // get any file not in tree
         workingDirInfo.otherFiles = getOthersFiles();
 
         // now mockup a RevFile
         revsFiles.insert(ZERO_SHA_RAW, fakeWorkDirRevFile(workingDirInfo));
+
+		auto mysha = ShaString(QString("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA").toLatin1().constData());
+		auto ark = revsFiles.contains(mysha);
+		auto looksie = revsFiles[ZERO_SHA_RAW];
+		auto looko2 = revsFiles[mysha];
 
         // then mockup the corresponding Rev
         SCRef log = (isNothingToCommit() ? "Nothing to commit" : "Working directory changes");
@@ -2882,7 +2922,7 @@ void Git::procReadyRead(const QByteArray& fileChunk) {
         if (lastEOL != -1)
                 filesLoadingPending.remove(0, lastEOL + 1);
 
-        emit fileNamesLoad(2, revsFiles.count() - filesLoadingStartOfs);
+        emit fileNamesLoad(2, revsFiles.count() - filesLoadingStartOfs);		// sets the progress bar I believe. But it's basically just our parsing right? The git output is already done???? Or is that what proc-ready-read means? This is a process and something (Console.cpp????) is telling us to read a line from stdout???????? Connected to procDataReady????????
 }
 
 void Git::flushFileNames(FileNamesLoader& fl) {

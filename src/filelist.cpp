@@ -176,9 +176,6 @@ void FileList::insertFiles(const RevFile* files) {
 	setUpdatesEnabled(false);
 	for (int i = 0; i < files->count(); ++i) {
 
-		if (files->statusCmp(i, RevFile::UNKNOWN))
-			continue;
-
 		const bool useDark = QPalette().color(QPalette::Window).value() > QPalette().color(QPalette::WindowText).value();
 
 		QColor clr = palette().color(QPalette::WindowText);
@@ -188,8 +185,8 @@ void FileList::insertFiles(const RevFile* files) {
 			new QListWidgetItem("", this);
 		}
 		QString extSt(files->extendedStatus(i));
-		if (extSt.isEmpty()) {
-			if (files->statusCmp(i, RevFile::NEW))
+		if (extSt.isEmpty()) {											// TODO but is uknown truly "new"? not just a fallback case? COMMITIMPL.CPP uses it for `isNew` (that dialog was already showing green, so make it consistent with that)
+			if (files->statusCmp(i, RevFile::NEW) || files->statusCmp(i, RevFile::UNKNOWN))			// TODOOOOOOOOOO THIS IS THE BOYO!!!!! New files now green whether they're staged or not, since the QGit view doesn't make a distinction of staged files anyway
 				clr = useDark ? Qt::darkGreen
 				              : Qt::green;
 			else if (files->statusCmp(i, RevFile::DELETED))
