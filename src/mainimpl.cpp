@@ -1371,6 +1371,75 @@ void MainImpl::doContexPopup(SCRef sha) {
 	if (isFilePage && ActExternalEditor->isEnabled())
 		contextMenu.addAction(ActExternalEditor);
 
+	// ###########################################
+	
+	QString i("Cherry pick");
+
+	QStringList selectedItems;
+	rv->tab()->listViewLog->getSelectedItems(selectedItems);
+	selectedItems.removeOne(ZERO_SHA);
+	bool isSuitableSelection = !selectedItems.empty();
+
+	ActCherryPick->setEnabled(isSuitableSelection && !git->getCurrentBranchName().isEmpty());
+
+	QString commitDescriptor = "selected commits";
+	if (isSuitableSelection && !git->getCurrentBranchName().isEmpty()) {
+		selectedItems[0].truncate(git->getShortHashLength());
+		commitDescriptor = selectedItems[0];
+	}
+	if (selectedItems.length() == 1) {
+		i += QString(" ") + commitDescriptor + QString(" on ") + git->getCurrentBranchName();
+	}
+
+	ActCherryPick->setText(i);
+	// ###########################################
+
+
+
+	// ###########################################
+
+	QString i2("Reset");
+
+	QStringList selectedItems2;
+	rv->tab()->listViewLog->getSelectedItems(selectedItems2);
+	selectedItems2.removeOne(ZERO_SHA);
+	bool isSuitableSelection2 = selectedItems2.length() == 1;
+
+	// TODO don't allow if selected commit is already the branch HEAD........
+	// TODO apparently checkout also allows reseting the branch, however it won't allow hard/mixed/soft
+	ActReset->setEnabled(isSuitableSelection2 && !git->getCurrentBranchName().isEmpty());
+
+	if (isSuitableSelection2 && !git->getCurrentBranchName().isEmpty()) {
+		selectedItems2[0].truncate(git->getShortHashLength());
+		i2 += QString(" ") + git->getCurrentBranchName() + QString(" to ") + selectedItems2[0];
+	}
+
+	ActReset->setText(i2);
+	// ###########################################
+
+	// ###########################################
+
+	QString i3("Revert");
+
+	QStringList selectedItems3;
+	rv->tab()->listViewLog->getSelectedItems(selectedItems3);
+	selectedItems3.removeOne(ZERO_SHA);
+	bool isSuitableSelection3 = !selectedItems3.empty();
+
+	ActRevert->setEnabled(isSuitableSelection3 && !git->getCurrentBranchName().isEmpty());
+
+	QString commitDescriptor3 = "selected commits";
+	if (selectedItems3.length() == 1) {
+		selectedItems3[0].truncate(git->getShortHashLength());
+		commitDescriptor3 = "commit " + selectedItems3[0];
+	}
+	if (!selectedItems3.empty()) {
+		i3 += QString(" ") + commitDescriptor3;
+	}
+
+	ActRevert->setText(i3);
+	// ###########################################
+
 	if (isRevPage) {
 		updateRevVariables(sha);
 
@@ -1378,6 +1447,10 @@ void MainImpl::doContexPopup(SCRef sha) {
 			contextMenu.addAction(ActCommit);
 		if (ActCheckout->isEnabled())
 			contextMenu.addAction(ActCheckout);
+		//if (ActReset->isEnabled())				// Add it anyway but disabled, good discoverability
+		contextMenu.addAction(ActReset);
+		contextMenu.addAction(ActCherryPick);
+		contextMenu.addAction(ActRevert);
 		if (ActBranch->isEnabled())
 			contextMenu.addAction(ActBranch);
 		if (ActTag->isEnabled())
@@ -1788,6 +1861,32 @@ void MainImpl::customAction_exited(const QString& name) {
 	const QString flags(ACT_GROUP_KEY + name + ACT_FLAGS_KEY);
 	if (testFlag(ACT_REFRESH_F, flags))
 		QTimer::singleShot(10, this, SLOT(refreshRepo())); // outside of event handler
+}
+
+void MainImpl::ActCherryPick_activated() {
+	//
+}
+
+void MainImpl::ActRevert_activated() {
+	//QMessageBox::information(this, "Doing it", "Doing it");
+
+	QStringList selectedItems;
+	rv->tab()->listViewLog->getSelectedItems(selectedItems);
+
+	bool success = git->revert(selectedItems[0]);
+	//if (success) {     // refresh either way because things might now be in a state
+		// TODO the UI unfortunately seems a little slow to do this refresh. It's not terrible but could be better
+		refreshRepo();
+	//}
+}
+
+void MainImpl::ActReset_activated() {
+
+	// TODO actually show hard/mixed/soft dialog
+	// TODO and actually only show this warning for hard resets
+	if (QMessageBox::warning(this, "Reset branch", "This branch (BRANCH_NAME_HERE) will be reset to COMMIT_HERE\n\nYou might lose commits if there are no other references to them (e.g. a tag or another branch)", QMessageBox::Cancel | QMessageBox::Ok, QMessageBox::Cancel) == QMessageBox::Ok) {
+		QMessageBox::information(this, "Doing it", "Doing it");
+	}
 }
 
 void MainImpl::ActCommit_activated() {

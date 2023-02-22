@@ -699,6 +699,24 @@ MyProcess* Git::getDiff(SCRef sha, QObject* receiver, SCRef diffToSha, bool comb
 	return runAsync(runCmd, receiver);
 }
 
+bool Git::revert(SCRef sha) {
+	QString runOutput;
+	bool result = run("git revert " + sha, &runOutput);
+
+	// TODO check for merge conflicts here
+
+	if (runOutput.contains("CONFLICT")) {
+		//
+	}
+
+	if (result) {
+		/*emit loadCompleted();
+		emit newRevsAdded();*/
+	}
+
+	return result;
+}
+
 const QString Git::getWorkDirDiff(SCRef fileName) {
 
 	QString runCmd("git diff-index --no-color -r -z -m -p --full-index --no-commit-id HEAD"), runOutput;

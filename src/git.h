@@ -80,6 +80,7 @@ public:
 	bool isSameFiles(SCRef tree1Sha, SCRef tree2Sha);
 	static bool isImageFile(SCRef file);
 	static bool isBinaryFile(SCRef file);
+	bool revert(SCRef sha);
 	bool isNothingToCommit();
 	bool isUnknownFiles() const { return (workingDirInfo.otherFiles.count() > 0); }
 	bool isTextHighlighter() const { return isTextHighlighterFound; }

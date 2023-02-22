@@ -95,6 +95,9 @@ protected slots:
 	void lineEditFilter_returnPressed();
 	void tabBar_tabCloseRequested(int index);
 	void ActBack_activated();
+	void ActCherryPick_activated();
+	void ActRevert_activated();
+	void ActReset_activated();
 	void ActForward_activated();
 	void ActFind_activated();
 	void ActFindNext_activated();

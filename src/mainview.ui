@@ -147,6 +147,9 @@
      <string>&amp;Edit</string>
     </property>
     <addaction name="ActCommit"/>
+    <addaction name="ActCherryPick"/>
+    <addaction name="ActReset"/>
+    <addaction name="ActRevert"/>
     <addaction name="ActAmend"/>
     <addaction name="ActCheckout"/>
     <addaction name="ActBranch"/>
@@ -309,6 +312,39 @@
    </property>
    <property name="shortcut">
     <string>#</string>
+   </property>
+  </action>
+  <action name="ActRevert">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Revert</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a new commit which reverses an existing commit</string>
+   </property>
+  </action>
+  <action name="ActCherryPick">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Cherry pick</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a copy of this commit on top of the current branch</string>
+   </property>
+  </action>
+  <action name="ActReset">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Reset</string>
+   </property>
+   <property name="toolTip">
+    <string>Move the current branch to point at the selected commit</string>
    </property>
   </action>
   <action name="ActTag">
@@ -966,6 +1002,24 @@
      <y>20</y>
     </hint>
    </hints>
+  </connection>
+  <connection>
+   <sender>ActRevert</sender>
+   <signal>triggered()</signal>
+   <receiver>MainBase</receiver>
+   <slot>ActRevert_activated()</slot>
+  </connection>
+  <connection>
+   <sender>ActCherryPick</sender>
+   <signal>triggered()</signal>
+   <receiver>MainBase</receiver>
+   <slot>ActCherryPick_activated()</slot>
+  </connection>
+  <connection>
+   <sender>ActReset</sender>
+   <signal>triggered()</signal>
+   <receiver>MainBase</receiver>
+   <slot>ActReset_activated()</slot>
   </connection>
   <connection>
    <sender>ActCommit</sender>
