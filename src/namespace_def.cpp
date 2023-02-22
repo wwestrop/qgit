@@ -193,6 +193,7 @@ const QString QGit::ACT_LIST_KEY    = "Custom_actions/list";
 const QString QGit::ACT_GROUP_KEY   = "Custom_action_list/";
 const QString QGit::ACT_TEXT_KEY    = "/commands";
 const QString QGit::ACT_FLAGS_KEY   = "/flags";
+const QString QGit::AUTOFETCH_TIME_KEY  = "auto_fetch_time";
 
 // settings default values
 const QString QGit::CMT_TEMPL_DEF   = ".git/commit-template";

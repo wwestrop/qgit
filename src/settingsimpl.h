@@ -26,6 +26,8 @@ protected slots:
 	void checkBoxSign_toggled(bool b);
 	void checkBoxRangeSelectDialog_toggled(bool b);
 	void checkBoxReopenLastRepo_toggled(bool b);
+	void checkBoxAutoFetch_toggled(bool b);
+	void spinBoxAutoFetchInterval_changed(int i);
 	void checkBoxRelativeDate_toggled(bool b);
 	void checkBoxLogDiffTab_toggled(bool b);
 	void checkBoxSmartLabels_toggled(bool b);

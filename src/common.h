@@ -214,6 +214,7 @@ namespace QGit {
 	extern const QString ACT_GROUP_KEY;
 	extern const QString ACT_TEXT_KEY;
 	extern const QString ACT_FLAGS_KEY;
+	extern const QString AUTOFETCH_TIME_KEY;
 
 	// settings default values
 	extern const QString CMT_TEMPL_DEF;
@@ -250,6 +251,7 @@ namespace QGit {
 // 		OPEN_IN_EDITOR_F = 1 << 16,  //  not used anymore; subject to be replaced
 		ENABLE_DRAGNDROP_F = 1 << 17,
 		ENABLE_SHORTREF_F = 1 << 18,
+		BKGND_FETCH_F   = 1 << 19
 	};
 	const int FLAGS_DEF = USE_CMT_MSG_F | RANGE_SELECT_F | SMART_LBL_F | VERIFY_CMT_F | SIGN_PATCH_F | LOG_DIFF_TAB_F | MSG_ON_NEW_F | ENABLE_DRAGNDROP_F;
 

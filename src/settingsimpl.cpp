@@ -50,6 +50,7 @@ SettingsImpl::SettingsImpl(QWidget* p, Git* g, int defTab) : QDialog(p), git(g) 
 	checkBoxCommitUseDefMsg->setChecked(f & USE_CMT_MSG_F);
 	checkBoxRangeSelectDialog->setChecked(f & RANGE_SELECT_F);
 	checkBoxReopenLastRepo->setChecked(f & REOPEN_REPO_F);
+	checkBoxAutoFetch->setChecked(f & BKGND_FETCH_F);
 	checkBoxRelativeDate->setChecked(f & REL_DATE_F);
 	checkBoxLogDiffTab->setChecked(f & LOG_DIFF_TAB_F);
 	checkBoxSmartLabels->setChecked(f & SMART_LBL_F);
@@ -80,6 +81,8 @@ SettingsImpl::SettingsImpl(QWidget* p, Git* g, int defTab) : QDialog(p), git(g) 
 
 	comboBoxDoubleClickAction->setCurrentIndex(set.value(DCLICK_ACT_KEY).toUInt());
 	lineEditDefaultCloneDir->setText(set.value(DEF_CLONE_DIR, QDir::homePath()).toString());
+	spinBoxAutoFetchInterval->setValue(set.value(AUTOFETCH_TIME_KEY, 10).toInt());
+	checkBoxAutoFetch_toggled(checkBoxAutoFetch->isChecked());
 	setupCodecsCombo();
 	checkBoxDiffCache_toggled(checkBoxDiffCache->isChecked());
 	tabDialog->setCurrentIndex(defTab);
@@ -308,6 +311,20 @@ void SettingsImpl::checkBoxRangeSelectDialog_toggled(bool b) {
 void SettingsImpl::checkBoxReopenLastRepo_toggled(bool b) {
 
 	changeFlag(REOPEN_REPO_F, b);
+}
+
+void SettingsImpl::checkBoxAutoFetch_toggled(bool b) {
+
+	changeFlag(BKGND_FETCH_F, b);
+
+	labelAutoFetchInterval->setEnabled(b);
+	spinBoxAutoFetchInterval->setEnabled(b);
+	labelAutoFetchIntervalUnits->setEnabled(b);
+}
+
+void SettingsImpl::spinBoxAutoFetchInterval_changed(int i) {
+
+	writeSetting(AUTOFETCH_TIME_KEY, i);
 }
 
 void SettingsImpl::checkBoxRelativeDate_toggled(bool b) {
