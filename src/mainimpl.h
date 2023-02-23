@@ -9,6 +9,7 @@
 
 #include <QProcess>
 #include <QRegExp>
+#include <QTimer>
 #include <QDir>
 #include "exceptionmanager.h"
 #include "common.h"
@@ -140,6 +141,7 @@ protected slots:
 	void ActHelp_activated();
 	void ActMarkDiffToSha_activated();
 	void closeEvent(QCloseEvent* ce);
+	void autoRefreshTimer_fired();
 
 private:
 	friend class setRepoDelayed;
@@ -175,6 +177,7 @@ private:
 	template<class X> QList<X*>* getTabs(QWidget* tabPage = NULL);
 	template<class X> X* firstTab(QWidget* startPage = NULL);
 	void openFileTab(FileView* fv = NULL);
+	void initAutoFetchTimer();
 
 	EM_DECLARE(exExiting);
 
@@ -195,7 +198,7 @@ private:
 	static const QRegExp emptySha;
 	QMap<QString, QVariant> revision_variables; // variables used in generic input dialogs
 	bool setRepositoryBusy;
-
+	QTimer autoFetchTimer;
 };
 
 class ExternalDiffProc : public QProcess {

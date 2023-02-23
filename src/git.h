@@ -81,6 +81,7 @@ public:
 	static bool isImageFile(SCRef file);
 	static bool isBinaryFile(SCRef file);
 	bool revert(SCRef sha);
+	bool fetch(bool allRemotes = false, bool fetchTags = false, bool prune = false);
 	bool isNothingToCommit();
 	bool isUnknownFiles() const { return (workingDirInfo.otherFiles.count() > 0); }
 	bool isTextHighlighter() const { return isTextHighlighterFound; }

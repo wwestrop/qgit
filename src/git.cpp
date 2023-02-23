@@ -717,6 +717,16 @@ bool Git::revert(SCRef sha) {
 	return result;
 }
 
+bool Git::fetch(bool allRemotes, bool fetchTags, bool prune) {
+
+	QString args = " --quiet ";
+	if (prune) args += " --prune ";
+	if (fetchTags) args += " --tags ";
+	if (allRemotes) args += " --all ";
+
+	return run("git fetch" + args);
+}
+
 const QString Git::getWorkDirDiff(SCRef fileName) {
 
 	QString runCmd("git diff-index --no-color -r -z -m -p --full-index --no-commit-id HEAD"), runOutput;

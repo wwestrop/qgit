@@ -159,6 +159,9 @@ MainImpl::MainImpl(SCRef cd, QWidget* p) : QMainWindow(p) {
 	connect(treeView, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)),
 	        this, SLOT(treeView_doubleClicked(QTreeWidgetItem*, int)));
 
+	connect(&autoFetchTimer, &QTimer::timeout, this, &MainImpl::autoRefreshTimer_fired);
+	initAutoFetchTimer();
+
 	// use most recent repo as startup dir if it exists and user opted to do so
 	QStringList recents(settings.value(REC_REP_KEY).toStringList());
 	QDir checkRepo;
@@ -190,6 +193,19 @@ MainImpl::MainImpl(SCRef cd, QWidget* p) : QMainWindow(p) {
 	// MainImpl c'tor is called before to enter event loop,
 	// but some stuff requires event loop to init properly
 	QTimer::singleShot(10, this, SLOT(initWithEventLoopActive()));
+}
+
+void MainImpl::autoRefreshTimer_fired() {
+
+	// bool fetchTags = false;
+	// QStringList fetchFromRemotes;
+	// fetchFromRemotes.add("all");
+	// git->fetch(fetchFromRemotes, fetchTags);
+
+	// git fetch --all --force (?) --[no-]auto-gc --prune --no-tags --tags --set-upstream --update-head-ok (?) --quiet 
+
+	git->fetch(true, true, true);
+	refreshRepo(true);	// true = keep selection (doesn't appear to work actually)
 }
 
 void MainImpl::initWithEventLoopActive() {
@@ -1769,6 +1785,8 @@ void MainImpl::ActSettings_activated() {
 
 	setView.exec();
 
+	initAutoFetchTimer();
+
 	// update ActCheckWorkDir if necessary
 	if (ActCheckWorkDir->isChecked() != testFlag(DIFF_INDEX_F))
 		ActCheckWorkDir->toggle();
@@ -1878,6 +1896,17 @@ void MainImpl::ActRevert_activated() {
 		// TODO the UI unfortunately seems a little slow to do this refresh. It's not terrible but could be better
 		refreshRepo();
 	//}
+}
+
+void MainImpl::initAutoFetchTimer() {
+
+	autoFetchTimer.stop();
+
+	QSettings settings;
+	if (testFlag(BKGND_FETCH_F)) {
+		auto interval = settings.value(AUTOFETCH_TIME_KEY).toInt() * 1000 * 60;
+		autoFetchTimer.start(interval);
+	}
 }
 
 void MainImpl::ActReset_activated() {
