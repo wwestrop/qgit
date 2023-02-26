@@ -103,6 +103,10 @@
    <addaction name="ActMailFormatPatch"/>
    <addaction name="ActMailApplyPatch"/>
    <addaction name="separator"/>
+   <addaction name="ActFetch"/>
+   <addaction name="ActPull"/>
+   <addaction name="ActPushR"/>
+   <addaction name="separator"/>
    <addaction name="ActSearchAndFilter"/>
    <addaction name="ActSearchAndHighlight"/>
    <addaction name="separator"/>
@@ -157,6 +161,10 @@
     <addaction name="ActDelete"/>
     <addaction name="ActPush"/>
     <addaction name="ActPop"/>
+    <addaction name="separator"/>
+    <addaction name="ActFetch"/>
+    <addaction name="ActPull"/>
+    <addaction name="ActPushR"/>
     <addaction name="separator"/>
     <addaction name="ActFind"/>
     <addaction name="ActFindNext"/>
@@ -442,6 +450,63 @@
    </property>
    <property name="shortcut">
     <string>PgDown</string>
+   </property>
+  </action>
+  <action name="ActFetch">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Fetch</string>
+   </property>
+   <property name="icon">
+    <iconset theme="go-bottom" resource="icons.qrc">
+     <normaloff>:/icons/resources/go-bottom.svg</normaloff>:/icons/resources/go-bottom.svg</iconset>
+   </property>
+   <property name="iconText">
+    <string>Fetch</string>
+   </property>
+   <property name="toolTip">
+    <string>Fetch</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F5</string>
+   </property>
+  </action>
+  <action name="ActPull">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Pull</string>
+   </property>
+   <property name="icon">
+    <iconset theme="go-down" resource="icons.qrc">
+     <normaloff>:/icons/resources/go-down.svg</normaloff>:/icons/resources/go-down.svg</iconset>
+   </property>
+   <property name="iconText">
+    <string>Pull (1)</string>
+   </property>
+   <property name="toolTip">
+    <string>Pull (1 commit)</string>
+   </property>
+  </action>
+  <action name="ActPushR">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Push</string>
+   </property>
+   <property name="icon">
+    <iconset theme="go-up" resource="icons.qrc">
+     <normaloff>:/icons/resources/go-up.svg</normaloff>:/icons/resources/go-up.svg</iconset>
+   </property>
+   <property name="iconText">
+    <string>Push (3)</string>
+   </property>
+   <property name="toolTip">
+    <string>Push (3 commits)</string>
    </property>
   </action>
   <action name="ActRefresh">
@@ -1196,6 +1261,24 @@
      <y>20</y>
     </hint>
    </hints>
+  </connection>
+  <connection>
+    <sender>ActFetch</sender>
+    <signal>triggered()</signal>
+    <receiver>MainBase</receiver>
+  <slot>ActFetch_activated()</slot>
+  </connection>
+  <connection>
+    <sender>ActPushR</sender>
+    <signal>triggered()</signal>
+    <receiver>MainBase</receiver>
+  <slot>ActPushR_activated()</slot>
+  </connection>
+  <connection>
+    <sender>ActPull</sender>
+    <signal>triggered()</signal>
+    <receiver>MainBase</receiver>
+  <slot>ActPull_activated()</slot>
   </connection>
   <connection>
    <sender>ActPush</sender>

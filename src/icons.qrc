@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/icons">
+        <file>resources/go-bottom.svg</file>
         <file>resources/go-down.svg</file>
         <file>resources/go-up.svg</file>
         <file>resources/emblem-favorite.svg</file>

@@ -129,6 +129,9 @@ protected slots:
 	void ActDelete_activated();
 	void ActPush_activated();
 	void ActPop_activated();
+	void ActFetch_activated();
+	void ActPushR_activated();
+	void ActPull_activated();
 	void ActClose_activated();
 	void ActExit_activated();
 	void ActSearchAndFilter_toggled(bool);

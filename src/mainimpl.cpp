@@ -2218,6 +2218,21 @@ void MainImpl::ActPop_activated() {
 	refreshRepo(false);
 }
 
+void MainImpl::ActFetch_activated() {
+
+	QMessageBox::information(this, "QGit", "Fetch requested");
+}
+
+void MainImpl::ActPull_activated() {
+
+	QMessageBox::information(this, "QGit", "Pull requested");
+}
+
+void MainImpl::ActPushR_activated() {
+
+	QMessageBox::information(this, "QGit", "Push requested");
+}
+
 void MainImpl::ActFilterTree_toggled(bool b) {
 
 	if (!ActFilterTree->isEnabled()) {
