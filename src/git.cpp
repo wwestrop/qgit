@@ -717,7 +717,7 @@ bool Git::revert(SCRef sha) {
 	return result;
 }
 
-bool Git::fetch(bool allRemotes, bool fetchTags, bool prune) {
+bool Git::fetch(bool allRemotes /* if not all remotes, specify the remote */, bool fetchTags, bool prune) {
 
 	QString args = " --quiet ";
 	if (prune) args += " --prune ";
@@ -1861,6 +1861,11 @@ bool Git::getRefs() {
         if (!run("git branch", &curBranchName))
                 return false;
 
+		// read remotes
+		QString runOutput;
+		run("git remote", &runOutput);
+		remotes = runOutput.split('\n', QString::SkipEmptyParts);
+
         curBranchSHA = curBranchSHA.trimmed();
         curBranchName = curBranchName.prepend('\n').section("\n*", 1);
         curBranchName = curBranchName.section('\n', 0, 0).trimmed();
@@ -1868,7 +1873,6 @@ bool Git::getRefs() {
             curBranchName = "";
 
         // read refs, normally unsorted
-        QString runOutput;
         if (!run("git show-ref -d", &runOutput))
                 return false;
 

@@ -82,6 +82,7 @@ public:
 	static bool isBinaryFile(SCRef file);
 	bool revert(SCRef sha);
 	bool fetch(bool allRemotes = false, bool fetchTags = false, bool prune = false);
+	QStringList getRemotes() { return remotes; }
 	bool isNothingToCommit();
 	bool isUnknownFiles() const { return (workingDirInfo.otherFiles.count() > 0); }
 	bool isTextHighlighter() const { return isTextHighlighterFound; }
@@ -287,6 +288,7 @@ private:
 	int shortHashLen;
 	QString firstNonStGitPatch;
 	RevFileMap revsFiles;
+	QStringList remotes;
 	QVector<QByteArray> revsFilesShaBackupBuf;
 	RefMap refsShaMap;
 	QVector<QByteArray> shaBackupBuf;

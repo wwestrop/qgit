@@ -35,6 +35,7 @@ set(CPP_SOURCES
     src/dataloader.cpp
     src/domain.cpp
     src/exceptionmanager.cpp
+    src/fetchimpl.cpp
     src/filecontent.cpp
     src/FileHistory.cc
     src/filelist.cpp
@@ -63,6 +64,7 @@ qt5_wrap_ui(UIS_HDRS
     src/commit.ui
     src/console.ui
     src/customaction.ui
+    src/fetch.ui
     src/fileview.ui
     src/help.ui
     src/mainview.ui

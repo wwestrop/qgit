@@ -28,6 +28,7 @@
 #include "commitimpl.h"
 #include "common.h"
 #include "customactionimpl.h"
+#include "fetchimpl.h"
 #include "fileview.h"
 #include "git.h"
 #include "help.h"
@@ -2220,7 +2221,10 @@ void MainImpl::ActPop_activated() {
 
 void MainImpl::ActFetch_activated() {
 
-	QMessageBox::information(this, "QGit", "Fetch requested");
+	FetchImpl f(this, git);
+
+	if (f.exec() == QDialog::Accepted)
+		QMessageBox::information(this, "QGit", "Fetch requested");
 }
 
 void MainImpl::ActPull_activated() {
