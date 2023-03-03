@@ -198,15 +198,10 @@ MainImpl::MainImpl(SCRef cd, QWidget* p) : QMainWindow(p) {
 
 void MainImpl::autoRefreshTimer_fired() {
 
-	// bool fetchTags = false;
-	// QStringList fetchFromRemotes;
-	// fetchFromRemotes.add("all");
-	// git->fetch(fetchFromRemotes, fetchTags);
+	bool success = git->fetch(true, true);
 
-	// git fetch --all --force (?) --[no-]auto-gc --prune --no-tags --tags --set-upstream --update-head-ok (?) --quiet 
-
-	git->fetch(true, true, true);
-	refreshRepo(true);	// true = keep selection (doesn't appear to work actually)
+	if (success)
+		refreshRepo(true);	// true = keep selection (doesn't appear to work actually)
 }
 
 void MainImpl::initWithEventLoopActive() {
@@ -2224,7 +2219,7 @@ void MainImpl::ActFetch_activated() {
 	FetchImpl f(this, git);
 
 	if (f.exec() == QDialog::Accepted)
-		QMessageBox::information(this, "QGit", "Fetch requested");
+		refreshRepo(true);
 }
 
 void MainImpl::ActPull_activated() {

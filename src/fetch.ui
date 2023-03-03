@@ -122,18 +122,19 @@
   </connection>
   <connection>
    <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>fetchBase</receiver>
-   <slot>accept()</slot>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
    <signal>rejected()</signal>
    <receiver>fetchBase</receiver>
    <slot>reject()</slot>
   </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>fetchBase</receiver>
+   <slot>ok_activated()</slot>
+  </connection>
  </connections>
  <slots>
   <slot>checkboxFetchAll_toggled(bool)</slot>
+  <slot>ok_activated()</slot>
  </slots>
 </ui>

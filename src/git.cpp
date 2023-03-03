@@ -717,14 +717,29 @@ bool Git::revert(SCRef sha) {
 	return result;
 }
 
-bool Git::fetch(bool allRemotes /* if not all remotes, specify the remote */, bool fetchTags, bool prune) {
+bool Git::fetch(bool fetchTags, bool prune) {
+
+	return fetch("", fetchTags, prune);
+}
+
+bool Git::fetch(const QString& remote, bool fetchTags, bool prune) {
 
 	QString args = " --quiet ";
-	if (prune) args += " --prune ";
-	if (fetchTags) args += " --tags ";
-	if (allRemotes) args += " --all ";
 
-	return run("git fetch" + args);
+	if (prune)
+		args += " --prune ";
+
+	if (fetchTags)
+		args += " --tags ";
+	else
+		args += " --no-tags ";
+
+	if (remote.isEmpty())
+		args += " --all ";
+	else
+		args += remote;
+
+	return run("git fetch " + args);
 }
 
 const QString Git::getWorkDirDiff(SCRef fileName) {

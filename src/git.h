@@ -81,7 +81,8 @@ public:
 	static bool isImageFile(SCRef file);
 	static bool isBinaryFile(SCRef file);
 	bool revert(SCRef sha);
-	bool fetch(bool allRemotes = false, bool fetchTags = false, bool prune = false);
+	bool fetch(bool fetchTags, bool prune);
+	bool fetch(const QString& remote, bool fetchTags, bool prune);
 	QStringList getRemotes() { return remotes; }
 	bool isNothingToCommit();
 	bool isUnknownFiles() const { return (workingDirInfo.otherFiles.count() > 0); }

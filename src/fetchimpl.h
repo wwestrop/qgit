@@ -10,8 +10,9 @@ Q_OBJECT
 public:
     FetchImpl(QWidget *parent, Git *git);
 
-public slots:
+private slots:
 	void checkboxFetchAll_toggled(bool);
+	void ok_activated();
 
 private:
     Git* git;
