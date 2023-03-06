@@ -83,7 +83,7 @@ public:
 	bool revert(SCRef sha);
 	bool fetch(bool fetchTags, bool prune);
 	bool fetch(const QString& remote, bool fetchTags, bool prune);
-	QStringList getRemotes() { return remotes; }
+	QStringList getRemotes() const { return remotes; }
 	bool isNothingToCommit();
 	bool isUnknownFiles() const { return (workingDirInfo.otherFiles.count() > 0); }
 	bool isTextHighlighter() const { return isTextHighlighterFound; }

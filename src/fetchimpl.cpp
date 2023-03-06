@@ -25,13 +25,8 @@ void FetchImpl::ok_activated() {
 	QString remote = checkBoxFetchAllRemotes->isChecked()
 		? ""
 		: comboBoxRemote->currentText();
-	//if (checkBoxFetchAllRemotes->isChecked()) {
+
 	success = git->fetch(remote, checkBoxFetchTags->isChecked(), checkBoxPrune->isChecked());
-	/*} else {
-		auto gg = comboBoxRemote->currentText();
-		auto ii = comboBoxRemote->itemText(comboBoxRemote->currentIndex());
-		success = git->fetch(false, checkBoxFetchTags->isChecked(), checkBoxPrune->isChecked());
-	}*/
 
 	QApplication::restoreOverrideCursor();
 
