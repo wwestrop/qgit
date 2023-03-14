@@ -48,6 +48,77 @@
 
 using namespace QGit;
 
+#include <QGraphicsWidget>
+#include <QPainter>
+#include <QTextItem>
+#include <QPen>
+#include <QBrush>
+
+class MyToolButton : public QToolButton {
+private:
+	const QWidget* wrappee;
+	QString label;
+
+public:
+	MyToolButton(const QToolButton* copy, const QString label)
+		: label(label) {
+
+		setIcon(copy->icon());
+		setText(copy->text());
+
+		wrappee = copy;
+
+		connect(this, &QToolButton::clicked, this, &MyToolButton::clicked);
+	}
+
+	void setLabel(const QString label) {
+
+		this->label = label;
+		//repaint();	// TODO unsure if necessary
+	}
+
+protected:
+	void MyToolButton::paintEvent(QPaintEvent* e) override {
+
+		QToolButton::paintEvent(e);
+
+		if (label.isEmpty()) return;
+
+		int radius = 60;
+		int xpadding = 7;
+		int ypadding = 4;
+
+		QPainter p(this);
+		p.setRenderHint(QPainter::Antialiasing);
+		p.setRenderHint(QPainter::TextAntialiasing);
+		p.setRenderHint(QPainter::HighQualityAntialiasing);
+
+		auto outlinePen = QPen(QBrush(QPalette().color(QPalette::Background)), 2);
+		p.setPen(outlinePen);
+		p.setBrush(QPalette().color(QPalette::Highlight));
+
+		auto font = QFont(p.font());
+		font.setBold(true);
+		font.setPixelSize(16);
+		p.setFont(font);
+
+		QFontMetrics m(font);
+		int labelWidth = m.horizontalAdvance(label);
+		int labelHeight = font.pixelSize();
+
+		auto boundrect = QRect(rect().width() - labelWidth - xpadding * 2, 0, labelWidth + xpadding * 2, labelHeight + ypadding * 2);
+
+		p.drawRoundRect(boundrect, radius, radius);
+
+		p.setPen(QPalette().color(QPalette::HighlightedText));
+		p.drawText(boundrect, Qt::AlignCenter | Qt::AlignHCenter, label);
+	}
+
+	void MyToolButton::clicked() {
+		wrappee->actions()[0]->activate(QAction::ActionEvent());
+	}
+};
+
 MainImpl::MainImpl(SCRef cd, QWidget* p) : QMainWindow(p) {
 
 	EM_INIT(exExiting, "Exiting");
@@ -66,6 +137,13 @@ MainImpl::MainImpl(SCRef cd, QWidget* p) : QMainWindow(p) {
 	toolBar->insertWidget(act, cmbSearch);
 	connect(lineEditSHA, SIGNAL(returnPressed()), this, SLOT(lineEditSHA_returnPressed()));
 	connect(lineEditFilter, SIGNAL(returnPressed()), this, SLOT(lineEditFilter_returnPressed()));
+
+	// Replace Push/Pull toolbar buttons with wrappers
+	// These paint custom overlays showing the number of commits
+	// TODO instead use insertWidget() to get them in the right places
+	// TODO and store a refefence so we can update the label later on
+	toolBar->addWidget(new MyToolButton(dynamic_cast<QToolButton*>(toolBar->children()[14]), "3"));
+	toolBar->addWidget(new MyToolButton(dynamic_cast<QToolButton*>(toolBar->children()[15]), "1"));
 
 	// create light and dark colors for alternate background
 	ODD_LINE_COL = palette().color(QPalette::Base);
